@@ -1,0 +1,27 @@
+@import "../../color.scss";
+
+.header {
+  background-color: #dfe6e9;
+  .nav {
+    .ul {
+      display: grid;
+      grid-auto-flow: column;
+
+      .navLinks {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        right: 0;
+
+        .authLink {
+          display: grid;
+          grid-auto-flow: row;
+
+          div {
+            // display: none;
+          }
+        }
+      }
+    }
+  }
+}
