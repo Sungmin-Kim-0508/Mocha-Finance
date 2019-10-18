@@ -1,25 +1,112 @@
 @import "../../color.scss";
 
+$header-height-vh: 10vh;
+$header-background-color: #55bce9;
+$common-grid-gap: 30px;
+$droplist-background-color: #a8d8ec;
 .header {
-  background-color: #dfe6e9;
+  background-color: $header-background-color;
+  min-height: $header-height-vh;
   .nav {
-    .ul {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-around;
+    align-items: center;
+
+    li,
+    a {
+      display: grid;
+      align-items: center;
+    }
+
+    li {
+      background-color: $header-background-color;
+      height: $header-height-vh;
+    }
+
+    .logo {
+      font-size: 20px;
+    }
+
+    .navLinks {
       display: grid;
       grid-auto-flow: column;
+      justify-content: space-around;
+      grid-gap: $common-grid-gap;
+      font-size: 16px;
 
-      .navLinks {
-        position: relative;
+      .userLinks {
         display: grid;
         grid-auto-flow: column;
-        right: 0;
+        grid-gap: $common-grid-gap;
+      }
 
-        .authLink {
+      .normalLinks {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: $common-grid-gap;
+      }
+
+      .authLink {
+        cursor: pointer;
+        position: relative;
+
+        &:hover .dropList {
+          display: block;
+        }
+
+        .dropList {
+          display: none;
+          z-index: 5;
+          position: absolute;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+// Mobile
+@media screen and (max-width: 780px) {
+  .header {
+    .nav {
+      display: grid;
+      grid-auto-flow: row;
+      grid-template-columns: 1fr;
+
+      .logo li a {
+        width: 30px;
+        position: relative;
+        left: 15px;
+        font-size: 18px;
+      }
+
+      .navLinks {
+        display: grid;
+        grid-auto-flow: column;
+        position: absolute;
+        right: 15px;
+
+        .normalLinks {
+          position: absolute;
+          background-color: coral;
+          right: 0;
+          height: 100vh - $header-height-vh;
+          width: 50%;
+          top: $header-height-vh;
+
           display: grid;
           grid-auto-flow: row;
+          justify-content: center;
+          align-items: center;
+          grid-gap: 20px;
+          z-index: 5;
+        }
 
-          div {
-            // display: none;
-          }
+        .userLinks {
+          display: grid;
+          grid-auto-flow: row;
         }
       }
     }

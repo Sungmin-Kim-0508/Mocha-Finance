@@ -1,5 +1,5 @@
 import React from "react";
-import NavMenu from "../NavMenu";
+import ToggleBtn from "../../utils/NavToggleBtn";
 import News from "../News";
 import uuid4 from "uuid4";
 import style from "./home.module.scss";
@@ -13,26 +13,12 @@ const HomePresenter = ({
   handleSubmit
 }) => {
   return (
-    <div>
-      {/* Search Bar */}
-      <section>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="keyword"
-            placeholder="Search for news, symbols or companies"
-            onChange={handleSearch}
-          />
-          <button type="submit">
-            <span>Submit</span>
-          </button>
-        </form>
-      </section>
+    <div className={style.homeContainer}>
       {/* Menu Bar: Favourite, Predict */}
-      {/* <section>
-        <NavMenu />
-      </section> */}
-      <section>
+      <section className={style.btnWrapper}>
+        <ToggleBtn />
+      </section>
+      <section className={style.searchResult}>
         {isLoading === false && isSearch === false && <News />}
         {isLoading && stockInfos.length === 0 && <p>Loading...</p>}
         {isLoading === false && isSearch === true && stockInfos.length > 0 && (

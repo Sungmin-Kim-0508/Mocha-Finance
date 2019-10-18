@@ -7,9 +7,32 @@ class SearchContainer extends Component {
   //   const { data } = await stockApi.historicalPrice("AAPL");
   //   console.log(data);
   // }
+  state = {
+    keyword: "",
+    isSearch: false
+  };
+
+  handleSearch = e => {
+    this.setState({
+      keyword: e.target.value
+    });
+  };
+
+  handleSubmit = async e => {
+    e.preventDefault();
+    const { keyword } = this.state;
+    if (keyword.length !== 0) {
+      console.log("Submit!");
+    }
+  };
 
   render() {
-    return <SearchPresenter />;
+    return (
+      <SearchPresenter
+        handleSearch={this.handleSearch}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
