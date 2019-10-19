@@ -15,9 +15,7 @@ const HomePresenter = ({
   return (
     <div className={style.homeContainer}>
       {/* Menu Bar: Favourite, Predict */}
-      <section className={style.btnWrapper}>
-        <ToggleBtn />
-      </section>
+      <section className={style.btnWrapper}></section>
       <section className={style.searchResult}>
         {isLoading === false && isSearch === false && <News />}
         {isLoading && stockInfos.length === 0 && <p>Loading...</p>}

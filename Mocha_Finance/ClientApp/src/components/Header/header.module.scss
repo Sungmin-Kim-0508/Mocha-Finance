@@ -4,63 +4,23 @@ $header-height-vh: 10vh;
 $header-background-color: #55bce9;
 $common-grid-gap: 30px;
 $droplist-background-color: #a8d8ec;
+$toggleBtn-border-line-color: #badc58;
+
 .header {
-  background-color: $header-background-color;
-  min-height: $header-height-vh;
-  .nav {
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: space-around;
-    align-items: center;
-
-    li,
-    a {
-      display: grid;
-      align-items: center;
+  nav {
+    .toggleBtn {
+      border-color: $toggleBtn-border-line-color;
     }
+    .links {
+      margin-left: 10vw;
 
-    li {
-      background-color: $header-background-color;
-      height: $header-height-vh;
-    }
-
-    .logo {
-      font-size: 20px;
-    }
-
-    .navLinks {
-      display: grid;
-      grid-auto-flow: column;
-      justify-content: space-around;
-      grid-gap: $common-grid-gap;
-      font-size: 16px;
-
-      .userLinks {
-        display: grid;
-        grid-auto-flow: column;
-        grid-gap: $common-grid-gap;
-      }
-
-      .normalLinks {
-        display: grid;
-        grid-auto-flow: column;
-        grid-gap: $common-grid-gap;
-      }
-
-      .authLink {
-        cursor: pointer;
-        position: relative;
-
-        &:hover .dropList {
-          display: block;
+      ul {
+        .mobileLink {
+          display: none;
         }
 
-        .dropList {
-          display: none;
-          z-index: 5;
-          position: absolute;
-          width: 100%;
-          text-align: center;
+        .desktopLink {
+          display: block;
         }
       }
     }
@@ -70,43 +30,18 @@ $droplist-background-color: #a8d8ec;
 // Mobile
 @media screen and (max-width: 780px) {
   .header {
-    .nav {
-      display: grid;
-      grid-auto-flow: row;
-      grid-template-columns: 1fr;
+    nav {
+      .links {
+        margin-left: 10vw;
 
-      .logo li a {
-        width: 30px;
-        position: relative;
-        left: 15px;
-        font-size: 18px;
-      }
+        ul {
+          .mobileLink {
+            display: block;
+          }
 
-      .navLinks {
-        display: grid;
-        grid-auto-flow: column;
-        position: absolute;
-        right: 15px;
-
-        .normalLinks {
-          position: absolute;
-          background-color: coral;
-          right: 0;
-          height: 100vh - $header-height-vh;
-          width: 50%;
-          top: $header-height-vh;
-
-          display: grid;
-          grid-auto-flow: row;
-          justify-content: center;
-          align-items: center;
-          grid-gap: 20px;
-          z-index: 5;
-        }
-
-        .userLinks {
-          display: grid;
-          grid-auto-flow: row;
+          .desktopLink {
+            display: none;
+          }
         }
       }
     }

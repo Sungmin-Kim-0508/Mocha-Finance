@@ -1,16 +1,17 @@
-$search-bar-width: 40vw;
+$search-bar-width: 30vw;
 $search-bar-height: 30px;
 form {
+  display: inline-block;
+  margin-left: 10vw;
   input[type="text"] {
-    padding: 5px;
+    width: 30vw;
+    padding: 3px;
     font-style: italic;
   }
   input[type="sumbit"] {
     padding: 0 5px;
   }
-  .searchInput {
-    min-width: 35vw;
-  }
+
   .submitInput {
     min-width: 5vw;
     height: 30px;
@@ -20,10 +21,11 @@ form {
 // Mobile
 @media screen and (max-width: 780px) {
   form {
-    min-width: 100vw;
     padding: 5px;
+    margin-left: 0;
+
     .searchInput {
-      min-width: 95vw;
+      min-width: 85vw;
     }
     .submitInput {
       display: none;
