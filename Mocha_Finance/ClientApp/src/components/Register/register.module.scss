@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  justify-content: center;
+  margin-top: 30px;
+
+  .title {
+    display: grid;
+    justify-content: center;
+  }
+
+  form {
+    .loginLink {
+      display: grid;
+      justify-content: center;
+    }
+    .submitBtn {
+      display: grid;
+      > button {
+        border-radius: 10px;
+      }
+    }
+  }
+}

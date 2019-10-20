@@ -1,0 +1,42 @@
+$form-tag-width-desktop: 40vw;
+$form-tag-width-mobile: 90vw;
+$search-bar-width-desktop: 30vw;
+$search-bar-width-mobile: 95vw;
+$search-bar-height: 30px;
+
+form {
+  display: inline-block;
+  min-width: $form-tag-width-desktop;
+  input[type="text"] {
+    padding: 3px;
+    font-style: italic;
+  }
+  input[type="sumbit"] {
+    padding: 0 5px;
+  }
+
+  .searchInput {
+    min-width: $search-bar-width-desktop;
+  }
+
+  .submitInput {
+    min-width: 5vw;
+    height: 30px;
+  }
+}
+
+// Mobile
+@media screen and (max-width: 780px) {
+  form {
+    padding: 5px;
+    margin-left: 0;
+    min-width: $form-tag-width-mobile;
+
+    .searchInput {
+      min-width: 85vw;
+    }
+    .submitInput {
+      display: none;
+    }
+  }
+}
