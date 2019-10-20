@@ -13,6 +13,10 @@ export const loadUser = () => (dispatch, getState) => {
   console.log("loadUser()");
 };
 
-export const login = () => (dispatch, getState) => {
-  console.log("login");
+export const login = (email, password) => async (dispatch, getState) => {
+  // api/SampleData/WeatherForecasts?startDateIndex=1
+  let userInfo = await fetch(
+    `https://localhost:44379/api/SampleData/WeatherForecasts?startDateIndex=${1}`
+  );
+  console.log(userInfo);
 };

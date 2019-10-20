@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import LoginPresenter from "./LoginPresenter";
+import { login } from "../../actions/authActions";
+import { connect } from "react-redux";
 
 class LoginContainer extends Component {
   state = {
@@ -16,6 +18,9 @@ class LoginContainer extends Component {
   handleSubmit = e => {
     e.preventDefault();
     console.log("login!");
+    const { email, password } = this.state;
+
+    this.props.login();
   };
   render() {
     const { email, password } = this.state;
@@ -28,4 +33,9 @@ class LoginContainer extends Component {
   }
 }
 
-export default LoginContainer;
+const mapStateToProps = state => {};
+
+export default connect(
+  null,
+  { login }
+)(LoginContainer);
