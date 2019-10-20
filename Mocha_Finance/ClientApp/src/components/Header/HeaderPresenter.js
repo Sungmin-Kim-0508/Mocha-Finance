@@ -6,10 +6,10 @@ import SearchBar from "../Search";
 import Toggler from "../../utils/NavToggleBtn";
 
 const HeaderPresenter = () => {
-  const AuthLink = () => (
-    <>
+  const AuthLinkDesktop = () => (
+    <li className={`nav-item dropdown ${style.desktopLink}`}>
       <a
-        class="nav-link dropdown-toggle"
+        className="nav-link dropdown-toggle"
         href="#"
         id="navbarDropdown"
         role="button"
@@ -21,16 +21,48 @@ const HeaderPresenter = () => {
       </a>
       <div className="dropdown-menu" aria-labelledby="navbarDropdown">
         <a className="dropdown-item">Profile</a>
+        <NavLink to={routes.favorite} className="dropdown-item">
+          My Favourite
+        </NavLink>
         <a className="dropdown-item">Log Out</a>
       </div>
-    </>
+    </li>
+  );
+  const AuthLinkMobile = () => (
+    <li className={`nav-item dropdown ${style.mobileLink}`}>
+      <a
+        className="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        MY USER NAME
+      </a>
+      <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a className="dropdown-item">Profile</a>
+        <NavLink to={routes.favorite} className="dropdown-item">
+          My Favourite
+        </NavLink>
+        <a className="dropdown-item">Log Out</a>
+      </div>
+    </li>
   );
   const GuestLink = () => (
-    <div className={style.guestLink}>
-      <li>
-        <NavLink to={routes.login}>Login</NavLink>
+    <>
+      <li className="nav-item">
+        <NavLink to={routes.login} className="nav-link">
+          Login
+        </NavLink>
       </li>
-    </div>
+      <li className="nav-item">
+        <NavLink to={routes.register} className="nav-link">
+          Register
+        </NavLink>
+      </li>
+    </>
   );
 
   return (
@@ -58,25 +90,14 @@ const HeaderPresenter = () => {
           id="navbarForCollapsing"
         >
           <ul className="navbar-nav mr-auto">
-            <li className={`nav-item ${style.mobileLink}`}>
-              <a href="#" className="nav-link">
-                My User Name
-              </a>
-            </li>
+            {/* <AuthLinkMobile /> */}
             <li className="nav-item">
-              <a href="#" className="nav-link">
-                About
-              </a>
-            </li>
-            <li className="nav-item">
-              <NavLink to={routes.favorite} className="nav-link">
-                My Favourite
+              <NavLink to={routes.predict} className="nav-link">
+                Predict Your Stock
               </NavLink>
             </li>
-            <li className={`nav-item dropdown ${style.desktopLink}`}>
-              {/* <GuestLink /> */}
-              <AuthLink />
-            </li>
+            {/* <AuthLinkDesktop /> */}
+            <GuestLink />
           </ul>
         </section>
       </nav>

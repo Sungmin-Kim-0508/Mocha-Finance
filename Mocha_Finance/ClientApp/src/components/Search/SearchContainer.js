@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchPresenter from "./SearchPresenter";
-import { stockApi } from "../../api";
+import { stockApi } from "../../apis/stockApi";
 
 class SearchContainer extends Component {
   // async componentDidMount() {

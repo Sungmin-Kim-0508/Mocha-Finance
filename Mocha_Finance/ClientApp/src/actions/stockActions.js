@@ -1,6 +1,6 @@
 import { LOADING_STOCK, SEARCHED_STOCK } from "./types";
 import { returnErrors } from "./errorActions";
-import { stockApi } from "../api";
+import { stockApi } from "../apis/stockApi";
 
 export const searchStock = keyword => async dispatch => {
   dispatch({ type: LOADING_STOCK });

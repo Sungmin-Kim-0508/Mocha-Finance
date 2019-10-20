@@ -11,8 +11,12 @@ $toggleBtn-border-line-color: #badc58;
     .toggleBtn {
       border-color: $toggleBtn-border-line-color;
     }
+
+    .searchBar {
+      margin-left: 17vw;
+    }
     .links {
-      margin-left: 10vw;
+      margin-left: 3vw;
 
       ul {
         .mobileLink {
@@ -31,6 +35,9 @@ $toggleBtn-border-line-color: #badc58;
 @media screen and (max-width: 780px) {
   .header {
     nav {
+      .searchBar {
+        margin: 0;
+      }
       .links {
         margin-left: 10vw;
 
