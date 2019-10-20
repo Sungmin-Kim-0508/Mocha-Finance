@@ -1,0 +1,13 @@
+.homeContainer {
+  display: grid;
+  position: relative;
+}
+
+// Mobile
+@media screen and (max-width: 780px) {
+  .homeContainer {
+    .btnWrapper {
+      margin-bottom: 30px;
+    }
+  }
+}

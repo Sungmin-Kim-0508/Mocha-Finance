@@ -1,0 +1,56 @@
+@import "../../color.scss";
+
+$header-height-vh: 10vh;
+$header-background-color: #55bce9;
+$common-grid-gap: 30px;
+$droplist-background-color: #a8d8ec;
+$toggleBtn-border-line-color: #badc58;
+
+.header {
+  nav {
+    .toggleBtn {
+      border-color: $toggleBtn-border-line-color;
+    }
+
+    .searchBar {
+      margin-left: 17vw;
+    }
+    .links {
+      margin-left: 3vw;
+
+      ul {
+        .mobileLink {
+          display: none;
+        }
+
+        .desktopLink {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Mobile
+@media screen and (max-width: 780px) {
+  .header {
+    nav {
+      .searchBar {
+        margin: 0;
+      }
+      .links {
+        margin-left: 10vw;
+
+        ul {
+          .mobileLink {
+            display: block;
+          }
+
+          .desktopLink {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
