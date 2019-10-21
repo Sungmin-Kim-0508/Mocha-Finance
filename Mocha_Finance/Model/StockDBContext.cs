@@ -16,12 +16,12 @@ namespace Mocha_Finance.Model
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string dbname = "database-1.c36vccvb9elc.us-east-2.rds.amazonaws.com";
-            string username = "";
-            string password = "";
-            string hostname = "";
-            string port = "1521";
-            string connectionString = "Data Source=" + hostname + ";Initial Catalog=" + dbname + ";User ID=" + username + ";Password=" + password + ";";
+            // microsoftentityframecore tools 2.1.1
+            //optionsBuilder.UseSqlServer(@"Server = myServerAddress; Database = myDataBase; User Id = myUsername; Password = myPassword;");
+            string dbname = "stockdb3.cjjkk6bktycj.us-east-1.rds.amazonaws.com";
+            string username = "admin";
+            string password = "123456789";
+            optionsBuilder.UseSqlServer(@"Server = stockdb3.cjjkk6bktycj.us-east-1.rds.amazonaws.com; Database = stockdb3; User Id = admin; Password = 123456789;");
 
 
         }
