@@ -12,6 +12,7 @@ namespace Mocha_Finance.Controllers
         string email = "abc@gmail.com";
         string password = "password";
 
+        [HttpPost("[action]")]
         public IEnumerable<User> Login(string e, string p)
         {
             if ((email.Equals(e)) && (password.Equals(p)))
@@ -32,6 +33,7 @@ namespace Mocha_Finance.Controllers
             }
         }
 
+        [HttpPost("[action]")]
         public bool Login2(string e, string p)
         {
             if ((email.Equals(e)) && (password.Equals(p)))
@@ -39,6 +41,8 @@ namespace Mocha_Finance.Controllers
             else
                 return false;
         }
+
+        [HttpGet("[action]")]
         public string Login3(string e, string p)
         {
             if ((email.Equals(e)) && (password.Equals(p)))

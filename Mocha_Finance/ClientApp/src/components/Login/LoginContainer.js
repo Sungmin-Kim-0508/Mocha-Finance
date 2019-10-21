@@ -20,7 +20,7 @@ class LoginContainer extends Component {
     console.log("login!");
     const { email, password } = this.state;
 
-    this.props.login();
+    this.props.login(email, password);
   };
   render() {
     const { email, password } = this.state;
