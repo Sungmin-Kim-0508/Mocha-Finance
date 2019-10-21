@@ -6,7 +6,7 @@ import {
   LOGIN_FAIL,
   REGISTER_FAIL
 } from "./types";
-
+import authApi from "../apis/authApi";
 import { returnErrors } from "./errorActions";
 
 export const loadUser = () => (dispatch, getState) => {
@@ -14,9 +14,8 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const login = (email, password) => async (dispatch, getState) => {
-  // api/SampleData/WeatherForecasts?startDateIndex=1
-  let userInfo = await fetch(
-    `https://localhost:44379/api/SampleData/WeatherForecasts?startDateIndex=${1}`
-  );
+  let userInfo = await authApi.register(email, password);
   console.log(userInfo);
 };
+
+export const register = (email, password) => async (dispatch, getState) => {};
