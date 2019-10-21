@@ -13,7 +13,7 @@ namespace Mocha_Finance.Model
             try
             {
                 StockDBContext sContext = new StockDBContext();
-                selectedMember = sContext.Members.FirstOrDefault(m => m.UserName == email && m.Password==password);
+                selectedMember = sContext.Members.FirstOrDefault(m => m.Email == email && m.Password==password);
             }
             catch (Exception ex)
             {
@@ -73,22 +73,22 @@ namespace Mocha_Finance.Model
         public void AddStockToMyFavByMemberID(int memberid, string stockName)
         {
 
-            try
-            {
-                Stock nStock = new Stock();
-                nStock.StockID = -1;
-                nStock.StockName = stockName;
-                nStock.StockPrice = 123.45;
-                nStock.MyFavouriteID = GetMyFavouriteByMemberID(memberid).MyFavouriteID;
-                StockDBContext sContext = new StockDBContext();
-                sContext.Stocks.Add(nStock);
-                sContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Problem with getting selectedProject");
-                throw ex;
-            }
+            //try
+            //{
+            //    Stock nStock = new Stock();
+            //    nStock.StockID = -1;
+            //    nStock.StockName = stockName;
+            //    nStock.StockPrice = 123.45;
+            //    nStock.MyFavouriteID = GetMyFavouriteByMemberID(memberid).MyFavouriteID;
+            //    StockDBContext sContext = new StockDBContext();
+            //    sContext.Stocks.Add(nStock);
+            //    sContext.SaveChanges();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Problem with getting selectedProject");
+            //    throw ex;
+            //}
         }
 
     }

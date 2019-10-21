@@ -11,10 +11,12 @@ namespace Mocha_Finance.Model
     {
         [Key]
         public int StockID { get; set; }
-        public string StockName { get; set; }
-        public double StockPrice { get; set; }
+        //  public string StockName { get; set; }
+        public string symbol { get; set; }
 
         public int? MyFavouriteID { get; set; }
         public MyFavourite MyFavourite { get; set; }
+        public ICollection<Historical> Historicals { get; set; }
+
     }
 }
