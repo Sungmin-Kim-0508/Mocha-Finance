@@ -12,7 +12,6 @@ namespace Mocha_Finance.Model
     {
         [Key]
         public int MyFavouriteID { get; set; }
-
         public int? MemberID { get; set; }
         public Member Member { get; set; }
 
