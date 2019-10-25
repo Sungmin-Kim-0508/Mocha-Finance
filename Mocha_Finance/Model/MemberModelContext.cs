@@ -53,57 +53,24 @@ namespace Mocha_Finance.Model
 
             return newMember.MemberID;
         }
-        // Get my favourite by member id
-        public List<MyFavourite> GetMyFavouritesByMemberID(int memberId)
+        public int AddMember()//(Member newMember)
         {
-            List<MyFavourite> favList;
-            try
-            {
-                StockDBContext sContext = new StockDBContext();
-                favList = sContext.MyFavouries.Where(m => m.MemberID == memberId).ToList();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Problem with getting selectedProject");
-                throw ex;
-            }
-            return favList;
-        }
-        // Get my favourite by member id
-        public MyFavourite GetMyFavouriteByMemberID(int memberId)
-        {
-            MyFavourite mf;
-            try
-            {
-                StockDBContext sContext = new StockDBContext();
-                mf = sContext.MyFavouries.FirstOrDefault(m => m.MemberID == memberId);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Problem with getting selectedProject");
-                throw ex;
-            }
-            return mf;
-        }
-        public void AddStockToMyFavByMemberID(int memberid, string stockName)
-        {
+            Member nnn = new Member("test@email", "123");
 
-            //try
-            //{
-            //    Stock nStock = new Stock();
-            //    nStock.StockID = -1;
-            //    nStock.StockName = stockName;
-            //    nStock.StockPrice = 123.45;
-            //    nStock.MyFavouriteID = GetMyFavouriteByMemberID(memberid).MyFavouriteID;
-            //    StockDBContext sContext = new StockDBContext();
-            //    sContext.Stocks.Add(nStock);
-            //    sContext.SaveChanges();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("Problem with getting selectedProject");
-            //    throw ex;
-            //}
+            try
+            {
+                //Member nnn = new Member("test@email", "123");
+                StockDBContext sContext = new StockDBContext();
+                sContext.Members.Add(nnn);
+                sContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Problem with getting selectedProject");
+                throw ex;
+            }
+
+            return nnn.MemberID;
         }
 
     }
