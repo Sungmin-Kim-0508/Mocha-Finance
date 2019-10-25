@@ -16,6 +16,11 @@ namespace Mocha_Finance.Controllers
         [HttpGet("[action]")]
         public bool Login2(string e, string p)
         {
+            // 1. If email doesn't exist, return null.
+
+            // 2. If password isn't valid, return null.
+
+            // 3. If username and password are valid, return email and MyFavourite.
             Member loginMember = mContext.GetMemberByName(e,p);
             if (loginMember != null)
                 return true;
