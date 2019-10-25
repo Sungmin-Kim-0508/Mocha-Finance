@@ -22,6 +22,21 @@ namespace Mocha_Finance.Model
             }
             return selectedMember;
         }
+        public Member GetMemberByID(int id)
+        {
+            Member selectedMember = null;
+            try
+            {
+                StockDBContext sContext = new StockDBContext();
+                selectedMember = sContext.Members.FirstOrDefault(m => m.MemberID == id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Problem with getting member");
+                throw ex;
+            }
+            return selectedMember;
+        }
         public int AddMember(Member newMember)
         {
             try

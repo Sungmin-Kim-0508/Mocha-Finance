@@ -14,7 +14,7 @@ namespace Mocha_Finance.Controllers
         MemberModelContext mContext = new MemberModelContext();
 
         [HttpGet("[action]")]
-        public bool Login2(string e, string p)
+        public bool Login(string e, string p)
         {
             Member loginMember = mContext.GetMemberByName(e,p);
             if (loginMember != null)
@@ -22,6 +22,17 @@ namespace Mocha_Finance.Controllers
             else
                 return false;
         }
+        [HttpPost("[action]")]
+        public Member Register(string e, string p)
+        {
+                Member nMemeber = new Member(e, p);
+                int returnedID = mContext.AddMember(nMemeber);
+                Member nnMemeber = mContext.GetMemberByID(returnedID);
+     
+            return nnMemeber;
+            
+        }
+
 
     }
 }
