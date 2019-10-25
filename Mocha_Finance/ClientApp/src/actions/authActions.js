@@ -14,8 +14,19 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const login = (email, password) => async (dispatch, getState) => {
-  let userInfo = await authApi.register(email, password);
-  console.log(userInfo);
+  // let userInfo = await authApi.register(email, password);
+  // console.log(userInfo);
 };
 
-export const register = (email, password) => async (dispatch, getState) => {};
+export const register = (email, password) => async (dispatch, getState) => {
+  try {
+    const registerInfo = await authApi.register(email, password);
+    console.log(registerInfo);
+  } catch (err) {
+    const { status } = err.response.returnErrors(
+      "Failed to Register. Please Make sure you put email and password.",
+      status
+    );
+  }
+  // console.log(email, password);
+};

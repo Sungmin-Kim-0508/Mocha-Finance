@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import RegisterPresenter from "./RegisterPresenter";
+import { connect } from "react-redux";
+import { register } from "../../actions/authActions";
 
 class RegisterContainer extends Component {
   state = {
@@ -16,6 +18,8 @@ class RegisterContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { email, password1, password2 } = this.state;
+    this.props.register(email, password1);
   };
   render() {
     return (
@@ -27,4 +31,7 @@ class RegisterContainer extends Component {
   }
 }
 
-export default RegisterContainer;
+export default connect(
+  null,
+  { register }
+)(RegisterContainer);
