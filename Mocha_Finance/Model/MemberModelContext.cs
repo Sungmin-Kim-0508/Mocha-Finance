@@ -41,6 +41,7 @@ namespace Mocha_Finance.Model
         {
             try
             {
+                newMember.MemberID = -1;
                 StockDBContext sContext = new StockDBContext();
                 sContext.Members.Add(newMember);
                 sContext.SaveChanges();
