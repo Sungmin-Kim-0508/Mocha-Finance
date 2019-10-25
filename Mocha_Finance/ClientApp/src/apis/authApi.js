@@ -8,7 +8,7 @@ const api = axios.create({
 // `https://localhost:44379/api/User/Login2?e=${email}&p=${password}`
 const authApi = {
   register: (email, password) => {
-    return api.post(`Login`, {
+    return api.get(`Login2`, {
       email,
       password
     });

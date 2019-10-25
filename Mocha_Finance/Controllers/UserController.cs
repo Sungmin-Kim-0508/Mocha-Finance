@@ -16,6 +16,10 @@ namespace Mocha_Finance.Controllers
 
         [HttpGet("[action]")]
         public bool Login(string e, string p)
+        MemberModelContext mContext = new MemberModelContext();
+
+        [HttpGet("[action]")]
+        public bool Login(string e, string p)
         {
             Member loginMember = mContext.GetMemberByName(e,p);
             if (loginMember != null)
@@ -46,7 +50,6 @@ namespace Mocha_Finance.Controllers
 
             return returnedMember;
         }
-
 
 
 
