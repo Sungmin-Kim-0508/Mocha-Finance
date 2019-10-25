@@ -11,38 +11,11 @@ namespace Mocha_Finance.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-<<<<<<< HEAD
-        string email = "abc@gmail.com";
-        string password = "password";
 
-        [HttpPost("[action]")]
-        public IEnumerable<User> Login(string e, string p)
-        {
-            if ((email.Equals(e)) && (password.Equals(p)))
-            {
-                return Enumerable.Range(1, 5).Select(index => new User
-                {
-                    email = "abc@gmail.com",
-                    password = "password"
-                }); ;
-            }
-            else
-            {
-                return Enumerable.Range(1, 5).Select(index => new User
-                {
-                    email = "NO",
-                    password = "NO"
-                }); ;
-            }
-        }
-
-        [HttpPost("[action]")]
-=======
         MemberModelContext mContext = new MemberModelContext();
 
         [HttpGet("[action]")]
->>>>>>> 40cd6d9b80f0be43c64f792fdaaf53821b4ae90f
-        public bool Login2(string e, string p)
+        public bool Login(string e, string p)
         {
             Member loginMember = mContext.GetMemberByName(e,p);
             if (loginMember != null)
@@ -51,7 +24,30 @@ namespace Mocha_Finance.Controllers
                 return false;
         }
 
+        /*
+         *  Controller Name     : Register
+            HTTP METHOD         : POST
+            ROUTE               : /api/User/Register
+            Params              : email, password
+            TODO                : 
+        */
+
+        [HttpPost("[action]")]
+        public Member Register(string e, string p)
+        {
+            Member nMember = new Member();
+            nMember.Email = e;
+            nMember.Password = p;
+            Member returnedMember;
+
+            int memberID = mContext.AddMember(nMember);
+            returnedMember = mContext.GetMemberByID(memberID);
         
+
+            return returnedMember;
+        }
+
+
 
 
     }

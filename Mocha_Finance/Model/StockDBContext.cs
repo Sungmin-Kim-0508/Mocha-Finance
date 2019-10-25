@@ -23,8 +23,6 @@ namespace Mocha_Finance.Model
             string username = "admin";
             string password = "123456789";
             optionsBuilder.UseSqlServer(@"Server = stockdb4.cjjkk6bktycj.us-east-1.rds.amazonaws.com; Database = stockdb4; User Id = admin; Password = 123456789;");
-
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
