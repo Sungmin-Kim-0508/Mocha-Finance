@@ -18,10 +18,5 @@ namespace Mocha_Finance.Model
 
         public ICollection<Stock> Stocks { get; set; }
 
-        public MyFavourite(int mId, string MyFavouriteName)
-        {
-            this.MemberID = mId;
-            this.MyFavouriteName = MyFavouriteName;
-        }
     }
 }

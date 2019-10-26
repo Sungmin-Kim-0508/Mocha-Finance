@@ -41,7 +41,7 @@ namespace Mocha_Finance.Model
         {
             try
             {
-                newMember.MemberID = -1;
+
                 StockDBContext sContext = new StockDBContext();
                 sContext.Members.Add(newMember);
                 sContext.SaveChanges();
@@ -54,26 +54,7 @@ namespace Mocha_Finance.Model
 
             return newMember.MemberID;
         }
-        public int AddMember()//(Member newMember)
-        {
-            Member nnn = new Member("test@email", "123");
-
-            try
-            {
-                //Member nnn = new Member("test@email", "123");
-                StockDBContext sContext = new StockDBContext();
-                sContext.Members.Add(nnn);
-                sContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Problem with getting selectedProject");
-                throw ex;
-            }
-
-            return nnn.MemberID;
-        }
-
+     
     }
 
 }

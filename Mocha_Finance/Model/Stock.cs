@@ -18,11 +18,6 @@ namespace Mocha_Finance.Model
         public MyFavourite MyFavourite { get; set; }
         public ICollection<Historical> Historicals { get; set; }
 
-        public Stock(string symbol, int favGroupid)
-        {
-            this.Symbol = symbol;
-            this.MyFavouriteID = favGroupid;
-        }
 
     }
 }
