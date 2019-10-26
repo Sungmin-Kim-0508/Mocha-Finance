@@ -25,9 +25,11 @@ namespace Mocha_Finance.Controllers
         [HttpPost("[action]")]
         public Member Register(string e, string p)
         {
-                Member nMemeber = new Member(e, p);
-                int returnedID = mContext.AddMember(nMemeber);
-                Member nnMemeber = mContext.GetMemberByID(returnedID);
+            Member nMemeber = new Member();
+            nMemeber.Email = e;
+            nMemeber.Password = p;
+            int returnedID = mContext.AddMember(nMemeber);
+            Member nnMemeber = mContext.GetMemberByID(returnedID);
      
             return nnMemeber;
             
