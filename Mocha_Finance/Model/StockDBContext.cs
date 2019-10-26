@@ -34,6 +34,7 @@ namespace Mocha_Finance.Model
                 .WithMany(b => b.MyFavourites)
                 .HasForeignKey(a => a.MemberID);
 
+
             modelBuilder.Entity<Stock>()
                 .HasOne(f => f.MyFavourite)
                 .WithMany(d => d.Stocks)

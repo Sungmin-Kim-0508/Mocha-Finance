@@ -13,12 +13,5 @@ namespace Mocha_Finance.Model
         public string Email { get; set; }
         public string Password { get; set; }
         public ICollection<MyFavourite> MyFavourites { get; set; }
-
-        public Member(string e, string p)
-        {
-            Email = e;
-            Password = p;
-        }
-
     }
 }
