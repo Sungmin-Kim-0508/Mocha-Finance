@@ -23,10 +23,11 @@ export const register = (email, password) => async (dispatch, getState) => {
     const registerInfo = await authApi.register(email, password);
     console.log(registerInfo);
   } catch (err) {
-    const { status } = err.response.returnErrors(
-      "Failed to Register. Please Make sure you put email and password.",
-      status
-    );
+    // const { status } = err.response.returnErrors(
+    //   "Failed to Register. Please Make sure you put email and password.",
+    //   status
+    // );
+    console.log(err.response);
   }
   // console.log(email, password);
 };
