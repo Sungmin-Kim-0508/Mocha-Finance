@@ -13,8 +13,8 @@ namespace Mocha_Finance.Controllers
     {
         MemberModelContext mContext = new MemberModelContext();
 
-        [HttpGet("[action]")]
-        public bool Login(string e, string p)
+        [HttpPost("[action]")]
+        public Member Login(string e, string p)
         {
             // 1. If email doesn't exist, return null.
 
@@ -22,11 +22,21 @@ namespace Mocha_Finance.Controllers
 
             // 3. If username and password are valid, return email and MyFavourite.
             Member loginMember = mContext.GetMemberByName(e,p);
+            
             if (loginMember != null)
-                return true;
+                return loginMember;
             else
-                return false;
+                return new Member();
         }
+
+        [HttpGet("[action]")]
+        public string ValidateLogin(string e, string p)
+        {
+            string msg = mContext.ValidateLogin(e, p);
+            return msg;
+        }
+
+
         [HttpPost("[action]")]
         public Member Register(string e, string p)
         {
@@ -35,7 +45,6 @@ namespace Mocha_Finance.Controllers
             nMemeber.Password = p;
             int returnedID = mContext.AddMember(nMemeber);
             Member nnMemeber = mContext.GetMemberByID(returnedID);
-     
             return nnMemeber;
             
         }

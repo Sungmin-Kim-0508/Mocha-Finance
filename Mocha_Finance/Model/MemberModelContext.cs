@@ -22,6 +22,39 @@ namespace Mocha_Finance.Model
             }
             return selectedMember;
         }
+
+        public string ValidateLogin(string email, string password)
+        {
+            string msg = "";
+            Member selectedMember = null;
+            Member selectedMember2 = null;
+            try
+            {
+                StockDBContext sContext = new StockDBContext();
+                selectedMember = sContext.Members.FirstOrDefault(m => m.Email == email);
+                if (selectedMember == null)
+                {
+                    msg = "Email Does not exist";
+                } 
+                else
+                {
+                    selectedMember2 = sContext.Members.FirstOrDefault(m => m.Email == selectedMember.Email && m.Password == password);
+                    if (selectedMember2 == null)
+                    {
+                        msg = "Wrong Password";
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Problem validating a login");
+                throw ex;
+            }
+            return msg;
+
+        }
+
         public Member GetMemberByID(int id)
         {
             Member selectedMember = null;
