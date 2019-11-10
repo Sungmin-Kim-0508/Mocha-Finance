@@ -30,7 +30,7 @@ namespace Mocha_Finance.Model
             try
             {
                 StockDBContext sContext = new StockDBContext();
-                fav = sContext.MyFavouries.FirstOrDefault(m => m.MyFavouriteID == favID && m.MemberID==favID);
+                fav = sContext.MyFavouries.FirstOrDefault(m => m.MyFavouriteID == favID && m.MemberID== memberId);
             }
             catch (Exception ex)
             {
