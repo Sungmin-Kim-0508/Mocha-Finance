@@ -14,8 +14,30 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const login = (email, password) => async (dispatch, getState) => {
-  // let userInfo = await authApi.register(email, password);
-  // console.log(userInfo);
+  console.log(email, password);
+  try {
+    const { data: userInfo } = await authApi.login(email, password);
+
+    // if email or password is invalid
+    if (userInfo.memberID === 0) {
+      const { data: msg } = await authApi.getMessage(email, password);
+      dispatch({ type: LOGIN_FAIL, payload: msg });
+    } else {
+      let data = {
+        user: {
+          memeberID: userInfo.memberID,
+          email: userInfo.email,
+          myFavourites: userInfo.myFavourites
+        },
+        token: "authenticated"
+      };
+      console.log(userInfo);
+      dispatch({ type: LOGIN_SUCCESS, payload: data });
+    }
+  } catch (err) {
+    console.log(err);
+    // returnErrors()
+  }
 };
 
 export const register = (email, password) => async (dispatch, getState) => {
@@ -27,7 +49,7 @@ export const register = (email, password) => async (dispatch, getState) => {
     //   "Failed to Register. Please Make sure you put email and password.",
     //   status
     // );
-    console.log(err.response);
+    console.log(err);
   }
   // console.log(email, password);
 };

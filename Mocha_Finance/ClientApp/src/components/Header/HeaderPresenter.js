@@ -5,7 +5,8 @@ import style from "./header.module.scss";
 import SearchBar from "../Search";
 import Toggler from "../../utils/NavToggleBtn";
 
-const HeaderPresenter = () => {
+const HeaderPresenter = ({ auth }) => {
+  const { isAuthenticated, user } = auth;
   const AuthLinkDesktop = () => (
     <li className={`nav-item dropdown ${style.desktopLink}`}>
       <a
@@ -96,8 +97,10 @@ const HeaderPresenter = () => {
                 Predict Your Stock
               </NavLink>
             </li>
+            {isAuthenticated === false && <GuestLink />}
+            {isAuthenticated && user && <AuthLinkDesktop />}
+            {isAuthenticated && user && <AuthLinkMobile />}
             {/* <AuthLinkDesktop /> */}
-            <GuestLink />
           </ul>
         </section>
       </nav>

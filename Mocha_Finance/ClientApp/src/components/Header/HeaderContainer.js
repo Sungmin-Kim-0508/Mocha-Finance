@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import HeaderPresenter from "./HeaderPresenter";
+import { connect } from "react-redux";
 
 class HeaderContainer extends Component {
   state = {
@@ -7,8 +8,15 @@ class HeaderContainer extends Component {
   };
   onClickDropList = () => {};
   render() {
-    return <HeaderPresenter />;
+    const { auth } = this.props;
+    return <HeaderPresenter auth={auth} />;
   }
 }
 
-export default HeaderContainer;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
+
+export default connect(mapStateToProps)(HeaderContainer);

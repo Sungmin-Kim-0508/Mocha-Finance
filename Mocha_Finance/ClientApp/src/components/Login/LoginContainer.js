@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LoginPresenter from "./LoginPresenter";
 import { login } from "../../actions/authActions";
 import { connect } from "react-redux";
+import routes from "../../routes";
 
 class LoginContainer extends Component {
   state = {
@@ -17,11 +18,17 @@ class LoginContainer extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log("login!");
     const { email, password } = this.state;
-
     this.props.login(email, password);
   };
+
+  componentDidUpdate(prevProps) {
+    const { auth } = this.props;
+    if (auth.isAuthenticated && auth.user) {
+      this.props.history.push(routes.home);
+    }
+  }
+
   render() {
     const { email, password } = this.state;
     return (
@@ -33,9 +40,13 @@ class LoginContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  };
+};
 
 export default connect(
-  null,
+  mapStateToProps,
   { login }
 )(LoginContainer);

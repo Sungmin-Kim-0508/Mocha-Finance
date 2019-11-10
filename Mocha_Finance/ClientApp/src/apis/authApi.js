@@ -9,6 +9,12 @@ const api = axios.create({
 const authApi = {
   register: (email, password) => {
     return api.post(`Register?e=${email}&p=${password}`);
+  },
+  login: (email, password) => {
+    return api.post(`Login?e=${email}&p=${password}`);
+  },
+  getMessage: (email, password) => {
+    return api.get(`ValidateLogin?e=${email}&p=${password}`);
   }
 };
 
