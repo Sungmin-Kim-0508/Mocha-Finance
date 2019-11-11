@@ -16,7 +16,7 @@ namespace Mocha_Finance.Controllers
         [HttpGet("[action]")]
         public Member GetMemberByMemberID(int memberID)
         {
-            Member selectedMember = mContext.GetMemberByID(member.MemberID);
+            Member selectedMember = mContext.GetMemberByID(memberID);
             return selectedMember;
         }
 
