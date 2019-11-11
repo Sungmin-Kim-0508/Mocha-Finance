@@ -24,6 +24,7 @@ const NewsBlockPresenter = ({ news, hasError, errorMsg }) => {
       if (index === 0) {
         return (
           <JumbotronComponent
+            key={uuid4()}
             name={name}
             author={author}
             title={title}

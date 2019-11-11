@@ -5,13 +5,15 @@ import {
   LOGIN_FAIL,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  GET_ERRORS
+  GET_ERRORS,
+  LOGOUT
 } from "../actions/types";
 
 const initialState = {
   isLoading: false,
   isAuthenticated: false,
-  token: localStorage.getItem("token"),
+  emailToken: localStorage.getItem("token"),
+  pToken: localStorage.getItem("p"),
   user: {},
   msg: ""
 };
@@ -19,26 +21,39 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case LOADING_USER:
-      return;
-    case LOADED_USER:
-      return;
-    case REGISTER_SUCCESS:
-      return;
-    case LOGIN_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
       return {
+        ...state,
+        isLoading: true,
+        msg: "Wait for me...!!"
+      };
+    case LOADED_USER:
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: true
+      };
+    case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
+      localStorage.setItem("email", action.payload.emailToken);
+      localStorage.setItem("p", action.payload.pToken);
+      return {
+        ...state,
         isLoading: false,
         isAuthenticated: true,
         user: action.payload.user,
         msg: ""
       };
+    case LOGOUT:
     case LOGIN_FAIL:
     case REGISTER_FAIL:
     case GET_ERRORS:
-      localStorage.removeItem("token");
+      localStorage.clear();
       return {
         ...state,
-        msg: action.payload.msg
+        isLoading: false,
+        isAuthenticated: false,
+        user: {},
+        msg: action.payload
       };
     default:
       return state;

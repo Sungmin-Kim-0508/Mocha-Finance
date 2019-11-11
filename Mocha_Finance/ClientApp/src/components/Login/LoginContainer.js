@@ -31,8 +31,10 @@ class LoginContainer extends Component {
 
   render() {
     const { email, password } = this.state;
+    const { msg } = this.props.auth;
     return (
       <LoginPresenter
+        msg={msg}
         handleInput={this.handleInput}
         handleSubmit={this.handleSubmit}
       />
