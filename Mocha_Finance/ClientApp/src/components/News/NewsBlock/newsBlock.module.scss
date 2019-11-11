@@ -12,11 +12,18 @@
 .rows {
   width: 100%;
   a {
+    display: grid;
+    grid-template-columns: 20vw 80vw;
+    grid-gap: 20px;
     .image {
       img {
-        width: 20vw;
+        // width: 20vw;
         height: 180px;
       }
+    }
+
+    .details {
+      width: 600px;
     }
   }
 }

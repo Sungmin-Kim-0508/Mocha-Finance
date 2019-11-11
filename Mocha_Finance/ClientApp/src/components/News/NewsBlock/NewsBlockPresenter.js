@@ -21,6 +21,7 @@ const NewsBlockPresenter = ({ news, hasError, errorMsg }) => {
         publishedAt
       } = item;
 
+      // first row of the news
       if (index === 0) {
         return (
           <JumbotronComponent
@@ -41,7 +42,7 @@ const NewsBlockPresenter = ({ news, hasError, errorMsg }) => {
               <div className={style.image}>
                 <img src={urlToImage} alt={title} />
               </div>
-              <div className={style.non_image}>
+              <div className={style.details}>
                 <div>Author: {author}</div>
                 <div>{name}</div>
                 <div>Date: {publishedAt}</div>
