@@ -12,6 +12,15 @@ namespace Mocha_Finance.Controllers
     public class UserController : Controller
     {
         MemberModelContext mContext = new MemberModelContext();
+       
+        [HttpGet("[action]")]
+        public Member GetMemberByMemberID(Member member)
+        {
+            Member selectedMember = mContext.GetMemberByID(member.MemberID);
+            return selectedMember;
+        }
+
+
 
         [HttpPost("[action]")]
         public Member Login(string e, string p)
