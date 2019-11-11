@@ -14,6 +14,16 @@ export const loadUser = () => async (dispatch, getState) => {
   dispatch({ type: LOADING_USER });
 
   try {
+    const userId = localStorage.getItem("id");
+    const { data: userInfo } = await authApi.getUserInfo(userId);
+    let data = {
+      user: {
+        memeberID: userInfo.memberID,
+        email: userInfo.email,
+        myFavourites: userInfo.myFavourites
+      }
+    };
+    dispatch({ type: LOADED_USER, payload: data });
   } catch (error) {}
 };
 
@@ -46,8 +56,7 @@ export const login = (email, password) => async (dispatch, getState) => {
           email: userInfo.email,
           myFavourites: userInfo.myFavourites
         },
-        emailToken: userInfo.email,
-        pToken: userInfo.password
+        idToken: userInfo.memberID
       };
       dispatch({ type: LOGIN_SUCCESS, payload: data });
     }
@@ -84,8 +93,7 @@ export const register = (email, password1, password2) => async (
         email: userInfo.email,
         myFavourites: userInfo.myFavourites
       },
-      emailToken: userInfo.email,
-      pToken: userInfo.password
+      idToken: userInfo.memberID
     };
     dispatch({ type: REGISTER_SUCCESS, payload: data });
   } catch (err) {
