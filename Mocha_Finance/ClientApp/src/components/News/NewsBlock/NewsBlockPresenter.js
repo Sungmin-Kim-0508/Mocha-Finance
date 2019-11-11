@@ -39,14 +39,19 @@ const NewsBlockPresenter = ({ news, hasError, errorMsg }) => {
           <section key={uuid4()} className={`${style.rows}`}>
             <a href={url}>
               <div className={style.image}>
-                <img src={urlToImage} alt={title} />
+                <img
+                  src={urlToImage}
+                  alt={urlToImage === null ? "No Image Available" : title}
+                />
               </div>
-              <div className={style.non_image}>
-                <div>Author: {author}</div>
-                <div>{name}</div>
-                <div>Date: {publishedAt}</div>
-                <h3>{title}</h3>
-                <h5>{description}...</h5>
+              <div className={style.details}>
+                <section className={style.details__name_date}>
+                  <div>Author: {author === null ? "unknown" : author}</div>
+                  <div>{name.length === 0 ? "unknown" : name}</div>
+                  <div>Date: {publishedAt}</div>
+                </section>
+                <h4>{title}</h4>
+                <p>{description}...</p>
               </div>
             </a>
           </section>
