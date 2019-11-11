@@ -12,6 +12,7 @@ namespace Mocha_Finance.Controllers
     public class StockController : Controller
     {
         StockModelContext sContext = new StockModelContext();
+        MyFavouriteModelContext fContext = new MyFavouriteModelContext();
 
         [HttpGet("[action]")]
         public Stock GetSingleStockByStockID(int id)
@@ -24,8 +25,13 @@ namespace Mocha_Finance.Controllers
                 return new Stock();
         }
         //[HttpPost("[action]")]
-        //public Member AddNewStockToFavourite(int favGroupID, string symbol)
+        //public bool AddNewStockToFavouriteByFavIDAndSymbol(int memberID,int favID, string symbol)
         //{
+        //    // grab a favourite by fav group id;
+        //    MyFavourite mFav = fContext.GetSingleMyFavourite(memberID, favID);
+
+
+
         //    //Member nMemeber = new Member();
         //    //nMemeber.Email = e;
         //    //nMemeber.Password = p;
