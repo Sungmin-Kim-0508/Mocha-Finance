@@ -21,11 +21,11 @@ class NewsBlockContainer extends Component {
         news: [],
         hasError: false
       });
-      const {
-        status,
-        data: { message }
-      } = err.response;
-      this.props.returnErrors(`Failed to load the news: ${message}`, status);
+      // const {
+      //   status,
+      //   data: { message }
+      // } = err.response;
+      this.props.returnErrors(`Failed to load the news..`, 400);
     }
   }
   render() {

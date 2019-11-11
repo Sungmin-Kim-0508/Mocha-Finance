@@ -3,7 +3,7 @@ import style from "./login.module.scss";
 import { NavLink } from "react-router-dom";
 import routes from "../../routes";
 
-const LoginPresenter = ({ handleInput, handleSubmit }) => {
+const LoginPresenter = ({ msg, handleInput, handleSubmit }) => {
   return (
     <div className={style.container}>
       <div className={style.title}>
@@ -27,6 +27,9 @@ const LoginPresenter = ({ handleInput, handleSubmit }) => {
           onChangeMethod={handleInput}
           placeholder="Enter Password"
         />
+        <div className={style.message}>
+          <span>{msg}</span>
+        </div>
         <div className={`form-group ${style.registerLink}`}>
           <NavLink to={routes.register}>You don't have an account?</NavLink>
         </div>
