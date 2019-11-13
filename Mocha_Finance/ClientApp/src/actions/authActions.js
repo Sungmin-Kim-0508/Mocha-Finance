@@ -14,12 +14,28 @@ export const loadUser = () => async (dispatch, getState) => {
   dispatch({ type: LOADING_USER });
 
   try {
-  } catch (error) {}
+    const userId = localStorage.getItem("id");
+    if (userId === null) {
+      dispatch({ type: LOGIN_FAIL, payload: "" });
+    } else {
+      const { data: userInfo } = await authApi.getUserInfo(userId);
+
+      let data = {
+        user: {
+          memberID: userInfo.memberID,
+          email: userInfo.email,
+          myFavourites: userInfo.myFavourites
+        }
+      };
+      dispatch({ type: LOADED_USER, payload: data });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const login = (email, password) => async (dispatch, getState) => {
   dispatch({ type: LOADING_USER });
-  console.log(email, password);
   if (email.length === 0) {
     const msg = "Put the email";
     dispatch({ type: LOGIN_FAIL, payload: msg });
@@ -46,14 +62,12 @@ export const login = (email, password) => async (dispatch, getState) => {
           email: userInfo.email,
           myFavourites: userInfo.myFavourites
         },
-        emailToken: userInfo.email,
-        pToken: userInfo.password
+        idToken: userInfo.memberID
       };
       dispatch({ type: LOGIN_SUCCESS, payload: data });
     }
   } catch (err) {
     console.log(err);
-    // returnErrors()
   }
 };
 
@@ -76,7 +90,6 @@ export const register = (email, password1, password2) => async (
 
   try {
     const { data: userInfo } = await authApi.register(email, password1);
-    console.log(userInfo);
 
     let data = {
       user: {
@@ -84,18 +97,15 @@ export const register = (email, password1, password2) => async (
         email: userInfo.email,
         myFavourites: userInfo.myFavourites
       },
-      emailToken: userInfo.email,
-      pToken: userInfo.password
+      idToken: userInfo.memberID
     };
     dispatch({ type: REGISTER_SUCCESS, payload: data });
   } catch (err) {
-    // const { status } = err.response.returnErrors(
-    //   "Failed to Register. Please Make sure you put email and password.",
-    //   status
-    // );
     console.log(err);
+    console.log(err.response);
+    const { status } = err.response;
+    returnErrors("Check your network connection.", status);
   }
-  // console.log(email, password);
 }; // register action
 
 export const logout = () => (dispatch, getState) => {

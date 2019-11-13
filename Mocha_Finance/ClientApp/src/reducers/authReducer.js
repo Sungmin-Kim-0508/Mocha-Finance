@@ -12,8 +12,7 @@ import {
 const initialState = {
   isLoading: false,
   isAuthenticated: false,
-  emailToken: localStorage.getItem("token"),
-  pToken: localStorage.getItem("p"),
+  idToken: localStorage.getItem("id"),
   user: {},
   msg: ""
 };
@@ -30,12 +29,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        isAuthenticated: true
+        isAuthenticated: true,
+        user: action.payload.user,
+        msg: ""
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      localStorage.setItem("email", action.payload.emailToken);
-      localStorage.setItem("p", action.payload.pToken);
+      localStorage.setItem("id", action.payload.idToken);
       return {
         ...state,
         isLoading: false,
