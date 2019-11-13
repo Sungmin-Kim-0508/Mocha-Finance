@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import FavouritePresenter from "./FavoritePresenter";
 import myFavouriteApi from "../../apis/myFavouriteApi";
+import authApi from "../../apis/authApi";
 import { connect } from "react-redux";
 
 class FavouriteContainer extends Component {
   state = {
-    myFavourite: "",
+    myFavouriteName: "",
+    symbol: "",
     myFavouriteNames: []
   };
 
@@ -17,12 +19,12 @@ class FavouriteContainer extends Component {
 
   handleAddFavourite = async e => {
     e.preventDefault();
-    const { myFavourite, myFavouriteNames } = this.state;
+    const { myFavouriteName, myFavouriteNames } = this.state;
     const { user } = this.props.auth;
 
     const { data } = await myFavouriteApi.addMyFavourite(
       user.memberID,
-      myFavourite
+      myFavouriteName
     );
     let favName = [...myFavouriteNames, data.myFavouriteName];
     favName = [...new Set(favName)];
@@ -54,13 +56,18 @@ class FavouriteContainer extends Component {
       this.setState({
         myFavouriteNames: [...new Set(favNames)]
       });
-      console.log([...new Set(favNames)]);
+      // console.log([...new Set(favNames)]);
+      console.log(allMyFav);
+
+      // User Information
+      const { data: userInfo } = await authApi.getUserInfo(user.memberID);
+      console.log(userInfo);
     }
   }
 
   render() {
-    const { myFavourite, myFavouriteNames } = this.state;
-    console.log(myFavouriteNames);
+    const { myFavouriteName, myFavouriteNames, symbol } = this.state;
+    console.log(symbol);
     return (
       <FavouritePresenter
         myFavouriteNames={myFavouriteNames}

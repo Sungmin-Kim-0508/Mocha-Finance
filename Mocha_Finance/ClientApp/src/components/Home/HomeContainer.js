@@ -29,6 +29,7 @@ class HomeContainer extends Component {
   render() {
     const { stockInfos, isSearch, isLoading } = this.props.stock;
     const { error } = this.props.error;
+    console.log(stockInfos);
     return (
       <HomePresenter
         stockInfos={stockInfos}
@@ -49,7 +50,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { searchStock }
-)(HomeContainer);
+export default connect(mapStateToProps, { searchStock })(HomeContainer);

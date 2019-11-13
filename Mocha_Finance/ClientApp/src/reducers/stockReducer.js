@@ -4,6 +4,8 @@ const initialState = {
   isLoading: false,
   isSearch: false,
   stockInfos: [],
+  symbol: "",
+  companyName: "",
   msg: ""
 };
 
@@ -21,7 +23,9 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        stockInfos: action.payload,
+        stockInfos: action.payload.stockInfos,
+        symbol: action.payload.symbol,
+        companyName: action.payload.companyName,
         isSearch: true
       };
     default:

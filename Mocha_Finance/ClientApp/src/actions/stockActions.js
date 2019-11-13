@@ -14,3 +14,24 @@ export const searchStock = keyword => async dispatch => {
       : returnErrors(error.response.data, error.response.status);
   }
 };
+
+export const searchTodayStock = keyword => async dispatch => {
+  dispatch({ type: LOADING_STOCK });
+  try {
+    const { data } = await stockApi.todayPrice(keyword);
+    const {
+      data: { symbolsList }
+    } = await stockApi.getSymbolList();
+    const myCompany = symbolsList.find(item => item.symbol === data.symbol);
+    dispatch({
+      type: SEARCHED_STOCK,
+      payload: {
+        stockInfos: data.historical,
+        symbol: data.symbol,
+        companyName: myCompany.name
+      }
+    });
+  } catch (error) {
+    console.log(error.response);
+  }
+};

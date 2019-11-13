@@ -5,5 +5,8 @@ const api = axios.create({
 });
 
 export const stockApi = {
-  historicalPrice: keyword => api.get(`historical-price-full/${keyword}`)
+  historicalPrice: keyword => api.get(`historical-price-full/${keyword}`),
+  todayPrice: keyword =>
+    api.get(`historical-price-full/${keyword}?from=2019-11-13&to=2019-11-13`),
+  getSymbolList: () => api.get(`company/stock/list`)
 };

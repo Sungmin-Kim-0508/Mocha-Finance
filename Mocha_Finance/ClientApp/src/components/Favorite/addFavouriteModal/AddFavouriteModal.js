@@ -38,7 +38,20 @@ class AddFavouriteModal extends Component {
                   type="text"
                   aria-label="Favourite Name"
                   className="form-control"
-                  name="myFavourite"
+                  name="myFavouriteName"
+                  onChange={handleInput}
+                />
+              </div>
+              <br />
+              <div className="input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">Symbols</span>
+                </div>
+                <input
+                  type="text"
+                  aria-label="Favourite Name"
+                  className="form-control"
+                  name="symbol"
                   onChange={handleInput}
                 />
               </div>
