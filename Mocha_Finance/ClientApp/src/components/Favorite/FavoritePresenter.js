@@ -1,6 +1,14 @@
 import React from "react";
 import style from "./favourite.module.scss";
-const FavouritePresenter = ({ handleAddFavourite }) => {
+import Spinner from "../../utils/Spinner";
+import uuid4 from "uuid4";
+import AddFavouriteModal from "./addFavouriteModal";
+
+const FavouritePresenter = ({
+  myFavouriteNames,
+  handleAddFavourite,
+  handleInput
+}) => {
   return (
     <div className={style.container}>
       <section>
@@ -9,9 +17,9 @@ const FavouritePresenter = ({ handleAddFavourite }) => {
         </button>
       </section>
       <section>
-        <span>Toronto</span>
-        <span>New York</span>
-        <span>LA</span>
+        {myFavouriteNames.length === 0 && <Spinner />}
+        {myFavouriteNames &&
+          myFavouriteNames.map(item => <span key={uuid4()}>{item}</span>)}
       </section>
       <section>
         <div>
@@ -23,50 +31,10 @@ const FavouritePresenter = ({ handleAddFavourite }) => {
         </div>
       </section>
       {/* Modal */}
-      <section
-        className="modal fade"
-        id="favModal"
-        tabIndex="3"
-        role="dialog"
-        aria-labelledby="favModal"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="favModal">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">...</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-dismiss="modal"
-                onClick={handleAddFavourite}
-              >
-                Save changes
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AddFavouriteModal
+        handleAddFavourite={handleAddFavourite}
+        handleInput={handleInput}
+      />
     </div>
   );
 };
