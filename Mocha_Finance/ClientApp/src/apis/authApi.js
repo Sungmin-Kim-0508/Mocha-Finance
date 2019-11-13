@@ -13,6 +13,9 @@ const authApi = {
   login: (email, password) => {
     return api.post(`Login?e=${email}&p=${password}`);
   },
+  getUserInfo: id => {
+    return api.get(`GetMemberByMemberID?memberID=${id}`);
+  },
   getMessage: (email, password) => {
     return api.get(`ValidateLogin?e=${email}&p=${password}`);
   }

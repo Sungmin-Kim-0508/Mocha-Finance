@@ -8,10 +8,16 @@ import Predict from "./components/Predict";
 import Register from "./components/Register";
 import routes from "./routes";
 import style from "./app.module.scss";
+import { connect } from "react-redux";
+import { loadUser } from "./actions/authActions";
+import store from "./store";
 
-export default class App extends Component {
+class App extends Component {
   displayName = App.name;
 
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
   render() {
     return (
       <>
@@ -27,3 +33,8 @@ export default class App extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+  { loadUser }
+)(App);
