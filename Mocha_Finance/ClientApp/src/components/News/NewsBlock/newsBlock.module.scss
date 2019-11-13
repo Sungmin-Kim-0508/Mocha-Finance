@@ -1,3 +1,7 @@
+* {
+  color: black;
+  text-decoration: none;
+}
 .firstRow {
   //   width: 100%;
   a {
@@ -12,10 +16,31 @@
 .rows {
   width: 100%;
   a {
+    display: grid;
+    grid-template-columns: 20vw 50vw;
+    grid-gap: 30px;
+
+    margin: 20px;
     .image {
       img {
         width: 20vw;
         height: 180px;
+      }
+    }
+
+    .details {
+      // width: 600px;
+      width: fit-content;
+
+      .details__name_date {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: left;
+        grid-gap: 15px;
+        font-size: 11px;
+        div {
+          color: #959595;
+        }
       }
     }
   }
