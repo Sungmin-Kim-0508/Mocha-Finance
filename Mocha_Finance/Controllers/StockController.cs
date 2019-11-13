@@ -29,5 +29,12 @@ namespace Mocha_Finance.Controllers
             return sContext.AddStock(favid, symbol);
         }
 
+        [HttpGet("[action]")]
+        public List<Stock> GetStocksByFavID(int favID)
+        {
+            List<Stock> stocks = sContext.GetAllStockByFavID(favID);
+            return stocks;
+        }
+
     }
 }
