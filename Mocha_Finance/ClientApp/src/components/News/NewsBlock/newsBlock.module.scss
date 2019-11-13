@@ -1,3 +1,7 @@
+* {
+  color: black;
+  text-decoration: none;
+}
 .firstRow {
   //   width: 100%;
   a {
@@ -13,8 +17,15 @@
   width: 100%;
   a {
     display: grid;
+<<<<<<< HEAD
     grid-template-columns: 20vw 80vw;
     grid-gap: 20px;
+=======
+    grid-template-columns: 20vw 50vw;
+    grid-gap: 30px;
+
+    margin: 20px;
+>>>>>>> 7857dd77595a793199c04c6866b24121f9f2e110
     .image {
       img {
         // width: 20vw;
@@ -23,7 +34,23 @@
     }
 
     .details {
+<<<<<<< HEAD
       width: 600px;
+=======
+      // width: 600px;
+      width: fit-content;
+
+      .details__name_date {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: left;
+        grid-gap: 15px;
+        font-size: 11px;
+        div {
+          color: #959595;
+        }
+      }
+>>>>>>> 7857dd77595a793199c04c6866b24121f9f2e110
     }
   }
 }
