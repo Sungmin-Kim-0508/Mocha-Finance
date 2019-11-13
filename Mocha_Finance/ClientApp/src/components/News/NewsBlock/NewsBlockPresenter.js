@@ -46,13 +46,6 @@ const NewsBlockPresenter = ({ news, hasError, errorMsg }) => {
                 />
               </div>
               <div className={style.details}>
-<<<<<<< HEAD
-                <div>Author: {author}</div>
-                <div>{name}</div>
-                <div>Date: {publishedAt}</div>
-                <h3>{title}</h3>
-                <h5>{description}...</h5>
-=======
                 <section className={style.details__name_date}>
                   <div>Author: {author === null ? "unknown" : author}</div>
                   <div>{name.length === 0 ? "unknown" : name}</div>
@@ -60,7 +53,6 @@ const NewsBlockPresenter = ({ news, hasError, errorMsg }) => {
                 </section>
                 <h4>{title}</h4>
                 <p>{description}...</p>
->>>>>>> 7857dd77595a793199c04c6866b24121f9f2e110
               </div>
             </a>
           </section>

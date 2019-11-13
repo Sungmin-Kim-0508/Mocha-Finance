@@ -17,26 +17,18 @@
   width: 100%;
   a {
     display: grid;
-<<<<<<< HEAD
-    grid-template-columns: 20vw 80vw;
-    grid-gap: 20px;
-=======
     grid-template-columns: 20vw 50vw;
     grid-gap: 30px;
 
     margin: 20px;
->>>>>>> 7857dd77595a793199c04c6866b24121f9f2e110
     .image {
       img {
-        // width: 20vw;
+        width: 20vw;
         height: 180px;
       }
     }
 
     .details {
-<<<<<<< HEAD
-      width: 600px;
-=======
       // width: 600px;
       width: fit-content;
 
@@ -50,7 +42,6 @@
           color: #959595;
         }
       }
->>>>>>> 7857dd77595a793199c04c6866b24121f9f2e110
     }
   }
 }
