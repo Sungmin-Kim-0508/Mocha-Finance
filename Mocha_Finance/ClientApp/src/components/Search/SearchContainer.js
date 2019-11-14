@@ -35,14 +35,11 @@ class SearchContainer extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.stock.stockInfos !== this.props.stock.stockInfos) {
       const { stockInfos } = this.props.stock;
-      console.log(stockInfos[0]);
     }
   }
 
   render() {
     const { todayHistorical } = this.state;
-    console.log(todayHistorical);
-    console.log(this.props);
 
     return (
       <SearchPresenter

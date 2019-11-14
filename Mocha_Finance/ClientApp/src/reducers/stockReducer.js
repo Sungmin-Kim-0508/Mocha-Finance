@@ -1,4 +1,8 @@
-import { LOADING_STOCK, SEARCHED_STOCK } from "../actions/types";
+import {
+  LOADING_STOCK,
+  SEARCHED_STOCK,
+  ADD_STOCK_ON_MY_FAVORITE
+} from "../actions/types";
 
 const initialState = {
   isLoading: false,
@@ -27,6 +31,11 @@ export default function(state = initialState, action) {
         symbol: action.payload.symbol,
         companyName: action.payload.companyName,
         isSearch: true
+      };
+    case ADD_STOCK_ON_MY_FAVORITE:
+      return {
+        ...state,
+        msg: "Add Successfully!"
       };
     default:
       return state;

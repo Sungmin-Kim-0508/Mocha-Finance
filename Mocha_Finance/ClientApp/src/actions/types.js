@@ -2,6 +2,7 @@
 export const LOADING_STOCK = "LOADING_STOCK";
 export const SEARCHED_STOCK = "SEARCHED_STOCK";
 export const GET_ERROS = "GET_ERROS";
+export const ADD_STOCK_ON_MY_FAVORITE = "ADD_STOCK_ON_MY_FAVORITE";
 
 // Auth Action Type
 export const LOADING_USER = "LOADING_USER";

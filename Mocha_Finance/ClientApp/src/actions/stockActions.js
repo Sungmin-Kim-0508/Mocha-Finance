@@ -1,6 +1,10 @@
-import { LOADING_STOCK, SEARCHED_STOCK } from "./types";
+import {
+  LOADING_STOCK,
+  SEARCHED_STOCK,
+  ADD_STOCK_ON_MY_FAVORITE
+} from "./types";
 import { returnErrors } from "./errorActions";
-import { stockApi } from "../apis/stockApi";
+import { stockApi, serverCrudApi } from "../apis/stockApi";
 
 export const searchStock = keyword => async dispatch => {
   dispatch({ type: LOADING_STOCK });
@@ -34,4 +38,13 @@ export const searchTodayStock = keyword => async dispatch => {
   } catch (error) {
     console.log(error.response);
   }
+};
+
+export const addStockOnMyFavourite = (favID, symbol) => async dispatch => {
+  const isAdded = await serverCrudApi.addStockByFavIDAndStockSymbol(
+    favID,
+    symbol
+  );
+
+  // dispatch({ type: ADD_STOCK_ON_MY_FAVORITE });
 };

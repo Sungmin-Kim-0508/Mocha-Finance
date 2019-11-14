@@ -39,6 +39,8 @@ class FavouriteContainer extends Component {
       const { data: allMyFav } = await myFavouriteApi.getAllFavourites(
         user.memberID
       );
+      console.log(allMyFav);
+
       let favNames = allMyFav.map(item => item.myFavouriteName);
       this.setState({
         myFavouriteNames: [...new Set(favNames)]
@@ -56,12 +58,11 @@ class FavouriteContainer extends Component {
       this.setState({
         myFavouriteNames: [...new Set(favNames)]
       });
-      // console.log([...new Set(favNames)]);
       console.log(allMyFav);
 
-      // User Information
-      const { data: userInfo } = await authApi.getUserInfo(user.memberID);
-      console.log(userInfo);
+      // // User Information
+      // const { data: userInfo } = await authApi.getUserInfo(user.memberID);
+      // console.log(userInfo);
     }
   }
 
