@@ -36,5 +36,14 @@ namespace Mocha_Finance.Controllers
             return stocks;
         }
 
+        //https://localhost:44379/api/Stock/GetAllStockByMemberID?memId=3
+        //   public List<Stock> GetAllStockByMemberID(int memId)
+        [HttpGet("[action]")]
+        public List<Stock> GetAllStockByMemberID(int memId)
+        {
+            List<Stock> stocks = sContext.GetAllStockByMemberID(memId);
+            return stocks;
+        }
+
     }
 }
