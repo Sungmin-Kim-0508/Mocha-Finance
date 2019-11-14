@@ -3,29 +3,73 @@ import SearchPresenter from "./SearchPresenter";
 import { stockApi } from "../../apis/stockApi";
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
+import style from "./search.module.scss";
+import Autosuggest from 'react-autosuggest';
+import { Toolbar, Card, AppBar, CardHeader, CardContent, Typography } from '@material-ui/core';
 
+var temp = [];
+
+// Use your imagination to render suggestions.
+function escapeRegexCharacters(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+function getSuggestions(value) {
+  const escapedValue = escapeRegexCharacters(value.trim());
+
+  if (escapedValue === '') {
+    return [];
+  }
+
+  const regex = new RegExp('\\b' + escapedValue, 'i');
+
+  return temp.filter(symbol => regex.test(getSuggestionValue(symbol)));
+}
+
+function getSuggestionValue(suggestion) {
+  return `${suggestion.symbol}`;
+}
+
+function renderSuggestion(suggestion, { query }) {
+  const suggestionText = `${suggestion.symbol}, ${suggestion.name}, ${suggestion.price}`;
+  const matches = AutosuggestHighlightMatch(suggestionText, query);
+  const parts = AutosuggestHighlightParse(suggestionText, matches);
+
+  return (
+
+    <Typography variant="h6" color="inherit">
+      {suggestionText}
+    </Typography>
+
+
+  );
+}
 class SearchContainer extends Component {
   async componentDidMount() {
     const { data } = await stockApi.symbolList();
 
-    this.setState({
-      symbols: data.symbolsList
-    })
+    temp = data.symbolsList;
+
+    this.symbols = data.symbolsList;
+    this.state = {
+      symbols: this.symbols,
+      suggestions: [],
+      value: ''
+    }
 
   }
+
   state = {
-    keyword: "",
+    keyword: '',
     isSearch: false,
     suggestions: [],
-    symbols: []
+    value: ''
   };
 
-  handleSearch = e => {
+  // onChange
+  handleSearch = (event, { newValue }) => {
     this.setState({
-      keyword: e.target.value,
-      suggestions: getSuggestions(e.target.value)
+      value: newValue
     });
-    console.log("Hi" + this.suggestions);
   };
 
   handleSubmit = async e => {
@@ -36,6 +80,12 @@ class SearchContainer extends Component {
       console.log("Submit!");
     }
   };
+  // this stores the filtered list into state
+  onSuggestionsFetchRequested = ({ value }) => {
+    this.setState({
+      suggestions: getSuggestions(value)
+    });
+  };
 
   onSuggestionsClearRequested = () => {
     this.setState({
@@ -44,61 +94,33 @@ class SearchContainer extends Component {
   };
 
   render() {
-    //console.log(this.state.symbols);
-    return (
-      <SearchPresenter
-        handleSearch={this.handleSearch}
-        handleSubmit={this.handleSubmit}
-        suggestions={this.suggestions}
 
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-      />
+    const { value, suggestions } = this.state;
+
+
+    const inputProps = {
+      placeholder: "Search for news, symbols or companies",
+      value,
+      onChange: this.handleSearch
+    };
+    return (
+
+      <Card style={{ marginTop: '20%' }}>
+        <CardContent>
+          <Autosuggest
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps} />
+        </CardContent>
+      </Card>
+
     );
   }
 }
 
-function getSuggestionValue(suggestion) {
 
-  return `${suggestion.symbol} ${suggestion.name}`;
-}
 
-function renderSuggestion(suggestion, { query }) {
-  const suggestionText = `${suggestion.symbol} ${suggestion.name}`;
-  const matches = AutosuggestHighlightMatch(suggestionText, query);
-  const parts = AutosuggestHighlightParse(suggestionText, matches);
-
-  return (
-    <span className={'suggestion-content ' + suggestion.twitter}>
-      <span className="name">
-        {
-          parts.map((part, index) => {
-            const className = part.highlight ? 'highlight' : null;
-
-            return (
-              <span className={className} key={index}>{part.text}</span>
-            );
-          })
-        }
-      </span>
-    </span>
-  );
-}
-
-function escapeRegexCharacters(str) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-function getSuggestions(value) {
-  const escapedValue = escapeRegexCharacters(value.trim());
-
-  if (escapedValue === '') {
-    return [];
-  }
-
-  const regex = new RegExp('\\b' + escapedValue, 'i');
-
-  return symbols.filter(value => regex.test(getSuggestionValue(value)));
-}
 export default SearchContainer;
