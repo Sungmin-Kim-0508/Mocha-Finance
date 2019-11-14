@@ -18,6 +18,8 @@ const serverApi = axios.create({
 
 export const serverCrudApi = {
   getAllStockByFavID: favid => serverApi.get(`GetStocksByFavID?favID=${favid}`),
+  getAllStcokByMemID: memid =>
+    serverApi.get(`GetAllStockByMemberID?memId=${memid}`),
   addStockByFavIDAndStockSymbol: (favid, symbol) =>
     serverApi.post(
       `AddStockByFavIDAndStockSymbol?favid=${favid}&symbol=${symbol}`

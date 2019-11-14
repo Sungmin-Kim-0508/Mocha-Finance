@@ -3,7 +3,10 @@ import FavouritePresenter from "./FavoritePresenter";
 import myFavouriteApi from "../../apis/myFavouriteApi";
 import authApi from "../../apis/authApi";
 import { connect } from "react-redux";
-import { getAllStockByFavId } from "../../actions/stockActions";
+import {
+  getAllStockByFavId,
+  getAllStockByMemberID
+} from "../../actions/stockActions";
 
 class FavouriteContainer extends Component {
   state = {
@@ -56,6 +59,8 @@ class FavouriteContainer extends Component {
       this.setState({
         myFavourites: myFavObj
       });
+
+      this.props.getAllStockByMemberID(user.memberID);
     }
   }
 
@@ -99,6 +104,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getAllStockByFavId })(
-  FavouriteContainer
-);
+export default connect(mapStateToProps, {
+  getAllStockByFavId,
+  getAllStockByMemberID
+})(FavouriteContainer);
