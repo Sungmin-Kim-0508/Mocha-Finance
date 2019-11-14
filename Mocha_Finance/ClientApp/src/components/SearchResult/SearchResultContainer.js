@@ -1,23 +1,14 @@
 import React, { Component } from "react";
-import HomePresenter from "./HomePresenter";
-import myFavouriteApi from "../../apis/myFavouriteApi";
+import SearchResultPresenter from "./SearchResultPresenter";
 import { connect } from "react-redux";
-import { searchStock } from "../../actions/stockActions";
-import { serverCrudApi } from "../../apis/stockApi";
 import { addStockOnMyFavourite } from "../../actions/stockActions";
-import routes from "../../routes";
+import myFavouriteApi from "../../apis/myFavouriteApi";
 
 let favID = 0;
-class HomeContainer extends Component {
+class SearchResultContainer extends Component {
   state = {
-    keyword: "",
-    stockInfos: [],
-    myFavourites: [],
-    isSearch: false,
-    isLoading: false,
-    error: ""
+    myFavourites: []
   };
-
   // Handle the value of the checkboxes on AddStockModal
   handleChecked = e => {
     favID = e.target.value;
@@ -63,17 +54,14 @@ class HomeContainer extends Component {
   }
 
   render() {
-    const { error } = this.props.error;
     const { myFavourites } = this.state;
+    const { stock } = this.props;
     return (
-      <HomePresenter
-        stock={this.props.stock}
+      <SearchResultPresenter
+        stock={stock}
         myFavourites={myFavourites}
-        error={error}
-        handleSearch={this.handleSearch}
         handleChecked={this.handleChecked}
         handleAddStockOnFavourite={this.handleAddStockOnFavourite}
-        handleSubmit={this.handleSubmit}
       />
     );
   }
@@ -81,12 +69,11 @@ class HomeContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth,
     stock: state.stock,
-    error: state.error
+    auth: state.auth
   };
 };
 
-export default connect(mapStateToProps, { searchStock, addStockOnMyFavourite })(
-  HomeContainer
+export default connect(mapStateToProps, { addStockOnMyFavourite })(
+  SearchResultContainer
 );

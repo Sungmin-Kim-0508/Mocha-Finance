@@ -77,7 +77,10 @@ const JumbotronComponent = ({
   <section className={`${style.firstRow}`}>
     <a href={url}>
       <div className={style.image}>
-        <img src={urlToImage} alt={title} />
+        <img
+          src={urlToImage}
+          alt={urlToImage === null ? "No Image Available" : title}
+        />
       </div>
       <div className={style.non_image}>
         <h4>{title}</h4>

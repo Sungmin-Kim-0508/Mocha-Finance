@@ -5,7 +5,7 @@ import style from "./header.module.scss";
 import SearchBar from "../Search";
 import Toggler from "../../utils/NavToggleBtn";
 
-const HeaderPresenter = ({ auth }) => {
+const HeaderPresenter = ({ auth, onLogOut }) => {
   const { isAuthenticated, user } = auth;
   const AuthLinkDesktop = () => (
     <li className={`nav-item dropdown ${style.desktopLink}`}>
@@ -20,12 +20,17 @@ const HeaderPresenter = ({ auth }) => {
       >
         MY USER NAME
       </a>
-      <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+      <div
+        className={`dropdown-menu ${style.dropdownMenu}`}
+        aria-labelledby="navbarDropdown"
+      >
         <a className="dropdown-item">Profile</a>
         <NavLink to={routes.favorite} className="dropdown-item">
           My Favourite
         </NavLink>
-        <a className="dropdown-item">Log Out</a>
+        <a className="dropdown-item" onClick={onLogOut}>
+          Log Out
+        </a>
       </div>
     </li>
   );
@@ -42,7 +47,10 @@ const HeaderPresenter = ({ auth }) => {
       >
         MY USER NAME
       </a>
-      <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+      <div
+        className={`dropdown-menu ${style.dropdownMenu}`}
+        aria-labelledby="navbarDropdown"
+      >
         <a className="dropdown-item">Profile</a>
         <NavLink to={routes.favorite} className="dropdown-item">
           My Favourite

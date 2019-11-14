@@ -5,6 +5,8 @@ const PREDICT = "/predict";
 const SEARCH = "/search";
 const LOGIN = "/login";
 const REGISTER = "/register";
+const FAVOURITE_DETAIL = "favourite_detail";
+const SEARCH_RESULT = "/search_result";
 
 const routes = {
   base_root_url: BASE_ROOT_URL,
@@ -13,7 +15,9 @@ const routes = {
   predict: PREDICT,
   search: SEARCH,
   login: LOGIN,
-  register: REGISTER
+  register: REGISTER,
+  favourite_detail: FAVOURITE_DETAIL,
+  search_result: SEARCH_RESULT
 };
 
 export default routes;

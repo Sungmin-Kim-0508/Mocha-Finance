@@ -66,17 +66,18 @@ export const getAllStockByFavId = favID => async dispatch => {
 };
 
 export const getAllStockByMemberID = memID => async dispatch => {
-  dispatch({ type: LOADING_STOCK });
+  dispatch({ type: LOADING_MY_FAVOURITE_STOCK });
   const { data: stockList } = await serverCrudApi.getAllStcokByMemID(memID);
   const {
     data: { symbolsList }
   } = await stockApi.getSymbolList();
+
   const myStockList = stockList.map(item => {
     const mySymbol = symbolsList.find(sym => sym.symbol === item.symbol);
     return mySymbol;
   });
 
-  console.log(myStockList);
+  console.log(stockList);
 
   dispatch({ type: LOADED_MY_FAVOURITE_STOCK, payload: myStockList });
 };

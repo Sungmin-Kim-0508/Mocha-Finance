@@ -4,6 +4,7 @@ import { stockApi } from "../../apis/stockApi";
 import { connect } from "react-redux";
 import { searchTodayStock } from "../../actions/stockActions";
 import { withRouter } from "react-router-dom";
+import routes from "../../routes";
 
 class SearchContainer extends Component {
   state = {
@@ -27,8 +28,12 @@ class SearchContainer extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { keyword } = this.state;
+    const {
+      history: { push }
+    } = this.props;
     if (keyword.length !== 0) {
       this.props.searchTodayStock(keyword);
+      push(routes.search_result);
     }
   };
 
@@ -56,6 +61,6 @@ const mapStateToProps = state => {
   };
 };
 
-withRouter(SearchContainer);
-
-export default connect(mapStateToProps, { searchTodayStock })(SearchContainer);
+export default withRouter(
+  connect(mapStateToProps, { searchTodayStock })(SearchContainer)
+);

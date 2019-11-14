@@ -12,31 +12,13 @@ const HomePresenter = ({
   handleAddStockOnFavourite
 }) => {
   const { symbol, companyName, stockInfos, isSearch, isLoading } = stock;
-  console.log(stockInfos);
+  console.log(myFavourites);
   return (
     <div className={style.homeContainer}>
       {/* Menu Bar: Favourite, Predict */}
       <section className={style.btnWrapper}></section>
       <section className={style.searchResult}>
-        {/* If no searching the stock */}
-        {isLoading === false && isSearch === false && <News />}
-        {/* If loading the stock */}
-        {isLoading && stockInfos.length === 0 && <p>Loading...</p>}
-        {/* If finishing loading the stock */}
-        {isLoading === false && isSearch === true && stockInfos.length > 0 && (
-          <StockDetails
-            stock={stock}
-            myFavourites={myFavourites}
-            symbol={symbol}
-            companyName={companyName}
-            stockInfos={stockInfos}
-            handleChecked={handleChecked}
-            handleAddStockOnFavourite={handleAddStockOnFavourite}
-          />
-        )}
-        {isLoading === false &&
-          isSearch === true &&
-          stockInfos.length === 0 && <p>No Results</p>}
+        {isLoading === false && <News />}
       </section>
     </div>
   );

@@ -3,10 +3,13 @@ import Spinner from "../../utils/Spinner";
 import uuid4 from "uuid4";
 import AddFavouriteModal from "./addFavouriteModal";
 import style from "./favourite.module.scss";
+import { NavLink } from "react-router-dom";
+import routes from "../../routes";
 
 const FavouritePresenter = ({
   stock,
   myFavourites,
+  handleClickList,
   handleAddFavourite,
   handleInput,
   handleGetAllStockByFavID
@@ -41,7 +44,12 @@ const FavouritePresenter = ({
         {myFavouriteStocks.length > 0 &&
           myFavouriteStocks !== null &&
           myFavouriteStocks.map(stock => (
-            <div key={uuid4()} className={style.myFavStocks__list}>
+            <NavLink
+              key={uuid4()}
+              id={stock.symbol}
+              className={style.myFavStocks__list}
+              to={`${routes.favourite_detail}/${stock.symbol}`}
+            >
               <div className={style.company_name_symbol}>
                 <span className={style.company_name}>{stock.name}</span>
                 <span className={style.symbol}>({stock.symbol})</span>
@@ -50,7 +58,7 @@ const FavouritePresenter = ({
                 <span className={style.label}>price:</span>
                 <h4>{stock.price}</h4>
               </div>
-            </div>
+            </NavLink>
           ))}
       </section>
       {/* Modal */}

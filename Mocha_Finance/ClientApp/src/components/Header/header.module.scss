@@ -9,6 +9,9 @@ $toggleBtn-border-line-color: #badc58;
 .header {
   margin-bottom: 30px;
   nav {
+    a {
+      color: #f1f2f6;
+    }
     .toggleBtn {
       border-color: $toggleBtn-border-line-color;
     }
@@ -26,6 +29,12 @@ $toggleBtn-border-line-color: #badc58;
 
         .desktopLink {
           display: block;
+
+          .dropdownMenu {
+            a {
+              color: black;
+            }
+          }
         }
       }
     }

@@ -4,14 +4,28 @@ import { connect } from "react-redux";
 
 class StockDetailsContainer extends Component {
   render() {
-    console.log(this.props.stock);
-    return <StockDetailsPresenter />;
+    const {
+      match,
+      myFavourites,
+      handleChecked,
+      handleAddStockOnFavourite
+    } = this.props;
+    return (
+      <StockDetailsPresenter
+        stock={this.props.stock}
+        auth={this.props.auth}
+        myFavourites={myFavourites}
+        handleChecked={handleChecked}
+        handleAddStockOnFavourite={handleAddStockOnFavourite}
+      />
+    );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    stock: state.stock
+    stock: state.stock,
+    auth: state.auth
   };
 };
 
