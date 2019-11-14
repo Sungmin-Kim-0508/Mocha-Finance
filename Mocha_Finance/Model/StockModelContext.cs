@@ -7,7 +7,6 @@ namespace Mocha_Finance.Model
 {
     public class StockModelContext
     {
-
         public int AddStock(int favGroupID, string symbol)
         {
             Stock nStock = new Stock();
@@ -57,6 +56,31 @@ namespace Mocha_Finance.Model
                 throw ex;
             }
             return stock;
+        }
+
+        public List<Stock> GetAllStockByMemberID(int memId)
+        {
+            List<Stock> lStock = new List<Stock>();
+            try
+            {
+                StockDBContext sContext = new StockDBContext();
+                MyFavouriteModelContext fContext = new MyFavouriteModelContext();
+                List<MyFavourite> nFav = fContext.GetMyFavouritesByMemberID(memId);
+                foreach(MyFavourite m in nFav){
+                    List<Stock> tempStockList = new List<Stock>();
+                    tempStockList = sContext.Stocks.Where(s=>s.MyFavouriteID.Equals(m.MyFavouriteID)).ToList();
+                    foreach(Stock st in tempStockList)
+                    {
+                        lStock.Add(st);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw ex;
+            }
+            return lStock;
         }
     }
 }
