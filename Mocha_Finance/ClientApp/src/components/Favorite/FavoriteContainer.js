@@ -3,12 +3,17 @@ import FavouritePresenter from "./FavoritePresenter";
 import myFavouriteApi from "../../apis/myFavouriteApi";
 import authApi from "../../apis/authApi";
 import { connect } from "react-redux";
+import { getAllStockByFavId } from "../../actions/stockActions";
 
 class FavouriteContainer extends Component {
   state = {
     myFavouriteName: "",
-    symbol: "",
-    myFavouriteNames: []
+    myFavourites: []
+  };
+
+  handleGetAllStockByFavID = e => {
+    const favID = parseInt(e.target.id);
+    this.props.getAllStockByFavId(favID);
   };
 
   handleInput = e => {
@@ -19,31 +24,37 @@ class FavouriteContainer extends Component {
 
   handleAddFavourite = async e => {
     e.preventDefault();
-    const { myFavouriteName, myFavouriteNames } = this.state;
+    const { myFavouriteName, myFavourites } = this.state;
     const { user } = this.props.auth;
 
     const { data } = await myFavouriteApi.addMyFavourite(
       user.memberID,
       myFavouriteName
     );
-    let favName = [...myFavouriteNames, data.myFavouriteName];
+
+    let favName = [...myFavourites, data.myFavouriteName];
     favName = [...new Set(favName)];
     this.setState({
-      myFavouriteNames: favName
+      myFavourites: favName
     });
   };
 
   async componentDidMount() {
     const { user } = this.props.auth;
+
     if (user !== null || user !== undefined) {
       const { data: allMyFav } = await myFavouriteApi.getAllFavourites(
         user.memberID
       );
       console.log(allMyFav);
 
-      let favNames = allMyFav.map(item => item.myFavouriteName);
+      let myFavObj = allMyFav.map(item => ({
+        myFavouriteName: item.myFavouriteName,
+        myFavouriteID: item.myFavouriteID
+      }));
+
       this.setState({
-        myFavouriteNames: [...new Set(favNames)]
+        myFavourites: myFavObj
       });
     }
   }
@@ -54,26 +65,28 @@ class FavouriteContainer extends Component {
       const { data: allMyFav } = await myFavouriteApi.getAllFavourites(
         user.memberID
       );
-      let favNames = allMyFav.map(item => item.myFavouriteName);
-      this.setState({
-        myFavouriteNames: [...new Set(favNames)]
-      });
-      console.log(allMyFav);
 
-      // // User Information
-      // const { data: userInfo } = await authApi.getUserInfo(user.memberID);
-      // console.log(userInfo);
+      let myFavObj = allMyFav.map(item => ({
+        myFavouriteName: item.myFavouriteName,
+        myFavouriteID: item.myFavouriteID
+      }));
+
+      this.setState({
+        myFavourites: myFavObj
+      });
     }
   }
 
   render() {
-    const { myFavouriteName, myFavouriteNames, symbol } = this.state;
-    console.log(symbol);
+    const { myFavourites } = this.state;
+    const { stock } = this.props;
     return (
       <FavouritePresenter
-        myFavouriteNames={myFavouriteNames}
+        stock={stock}
+        myFavourites={myFavourites}
         handleAddFavourite={this.handleAddFavourite}
         handleInput={this.handleInput}
+        handleGetAllStockByFavID={this.handleGetAllStockByFavID}
       />
     );
   }
@@ -81,8 +94,11 @@ class FavouriteContainer extends Component {
 
 const mapStateToProps = state => {
   return {
+    stock: state.stock,
     auth: state.auth
   };
 };
 
-export default connect(mapStateToProps)(FavouriteContainer);
+export default connect(mapStateToProps, { getAllStockByFavId })(
+  FavouriteContainer
+);

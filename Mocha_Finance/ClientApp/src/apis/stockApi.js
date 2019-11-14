@@ -5,10 +5,6 @@ const api = axios.create({
   baseURL: "https://financialmodelingprep.com/api/v3/"
 });
 
-const serverApi = axios.create({
-  baseURL: `${routes.base_root_url}/api/Stock/`
-});
-
 export const stockApi = {
   historicalPrice: keyword => api.get(`historical-price-full/${keyword}`),
   todayPrice: keyword =>
@@ -16,7 +12,12 @@ export const stockApi = {
   getSymbolList: () => api.get(`company/stock/list`)
 };
 
+const serverApi = axios.create({
+  baseURL: `${routes.base_root_url}/api/Stock/`
+});
+
 export const serverCrudApi = {
+  getAllStockByFavID: favid => serverApi.get(`GetStocksByFavID?favID=${favid}`),
   addStockByFavIDAndStockSymbol: (favid, symbol) =>
     serverApi.post(
       `AddStockByFavIDAndStockSymbol?favid=${favid}&symbol=${symbol}`

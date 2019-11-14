@@ -1,0 +1,60 @@
+.container {
+  .button {
+    margin-bottom: 10px;
+  }
+
+  .fav {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: left;
+    grid-gap: 10px;
+
+    margin-bottom: 20px;
+
+    .favList {
+      background-color: #00a8ff;
+      border-radius: 20px;
+      text-align: center;
+      width: fit-content;
+      padding: 8px;
+      color: #fbc531;
+      cursor: pointer;
+    }
+  }
+
+  .myFavStocks {
+    .myFavStocks__list {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: space-between;
+      height: 70px;
+      margin-bottom: 10px;
+
+      background-color: #95afc0;
+
+      padding: 5px 10px;
+      border-radius: 5px;
+
+      .company_name_symbol,
+      .company_stock_price {
+        display: grid;
+        grid-auto-flow: column;
+        grid-gap: 7px;
+
+        .company_name {
+          font-size: 2rem;
+          font-weight: bold;
+        }
+
+        .symbol {
+          font-size: 1rem;
+          margin-top: 20px;
+        }
+
+        .label {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}

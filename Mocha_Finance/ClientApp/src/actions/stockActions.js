@@ -1,7 +1,9 @@
 import {
   LOADING_STOCK,
   SEARCHED_STOCK,
-  ADD_STOCK_ON_MY_FAVORITE
+  ADD_STOCK_ON_MY_FAVORITE,
+  LOADING_MY_FAVOURITE_STOCK,
+  LOADED_MY_FAVOURITE_STOCK
 } from "./types";
 import { returnErrors } from "./errorActions";
 import { stockApi, serverCrudApi } from "../apis/stockApi";
@@ -46,5 +48,23 @@ export const addStockOnMyFavourite = (favID, symbol) => async dispatch => {
     symbol
   );
 
-  // dispatch({ type: ADD_STOCK_ON_MY_FAVORITE });
+  dispatch({ type: ADD_STOCK_ON_MY_FAVORITE });
+};
+
+export const getAllStockByFavId = favID => async dispatch => {
+  dispatch({ type: LOADING_MY_FAVOURITE_STOCK });
+  const { data: stockList } = await serverCrudApi.getAllStockByFavID(favID);
+  const {
+    data: { symbolsList }
+  } = await stockApi.getSymbolList();
+  // const mySymbol = symbolsList.find(item => item.symbol === symbol);
+  const myStockList = stockList.map(item => {
+    const mySymbol = symbolsList.find(sym => sym.symbol === item.symbol);
+    return mySymbol;
+  });
+  dispatch({ type: LOADED_MY_FAVOURITE_STOCK, payload: myStockList });
+};
+
+export const getAllStockByMemberID = memID => async dispatch => {
+  dispatch({ type: LOADING_STOCK });
 };
