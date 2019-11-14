@@ -1,6 +1,14 @@
 .container {
   .button {
     margin-bottom: 10px;
+
+    > button {
+      background-color: unset;
+      border: 1px solid #0984e3;
+      border-radius: 20px;
+      padding: 5px;
+      color: #636e72;
+    }
   }
 
   .fav {
@@ -17,7 +25,7 @@
       text-align: center;
       width: fit-content;
       padding: 8px;
-      color: #fbc531;
+      color: #f5f6fa;
       cursor: pointer;
     }
   }

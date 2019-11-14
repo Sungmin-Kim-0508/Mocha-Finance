@@ -42,19 +42,6 @@ class AddFavouriteModal extends Component {
                   onChange={handleInput}
                 />
               </div>
-              <br />
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">Symbols</span>
-                </div>
-                <input
-                  type="text"
-                  aria-label="Favourite Name"
-                  className="form-control"
-                  name="symbol"
-                  onChange={handleInput}
-                />
-              </div>
             </div>
             <div className="modal-footer">
               <button

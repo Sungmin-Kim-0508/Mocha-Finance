@@ -29,20 +29,6 @@ class HomeContainer extends Component {
     this.props.addStockOnMyFavourite(favID, symbol);
   };
 
-  handleSearch = e => {
-    this.setState({
-      keyword: e.target.value
-    });
-  };
-
-  handleSubmit = async e => {
-    e.preventDefault();
-    const { keyword } = this.state;
-    if (keyword.length !== 0) {
-      this.props.searchStock(keyword);
-    }
-  };
-
   async componentDidMount() {
     const { user } = this.props.auth;
     if (user !== null || user !== undefined) {
@@ -89,6 +75,7 @@ class HomeContainer extends Component {
     const { myFavourites } = this.state;
     return (
       <HomePresenter
+        stock={this.props.stock}
         myFavourites={myFavourites}
         symbol={symbol}
         companyName={companyName}
