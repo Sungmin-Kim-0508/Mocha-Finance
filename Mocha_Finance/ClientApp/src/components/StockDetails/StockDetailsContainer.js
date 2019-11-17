@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 class StockDetailsContainer extends Component {
   render() {
     const {
-      match,
       myFavourites,
       handleChecked,
       handleAddStockOnFavourite

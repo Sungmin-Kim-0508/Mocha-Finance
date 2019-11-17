@@ -25,7 +25,7 @@ const HeaderPresenter = ({ auth, onLogOut }) => {
         aria-labelledby="navbarDropdown"
       >
         <a className="dropdown-item">Profile</a>
-        <NavLink to={routes.favorite} className="dropdown-item">
+        <NavLink to={routes.favourite} className="dropdown-item">
           My Favourite
         </NavLink>
         <a className="dropdown-item" onClick={onLogOut}>
@@ -52,7 +52,7 @@ const HeaderPresenter = ({ auth, onLogOut }) => {
         aria-labelledby="navbarDropdown"
       >
         <a className="dropdown-item">Profile</a>
-        <NavLink to={routes.favorite} className="dropdown-item">
+        <NavLink to={routes.favourite} className="dropdown-item">
           My Favourite
         </NavLink>
         <a className="dropdown-item">Log Out</a>

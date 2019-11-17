@@ -27,13 +27,13 @@ class App extends Component {
         <div className={style.wrapper}>
           <Switch>
             <Route exact path={routes.home} component={Home} />
-            <Route path={routes.favorite} component={Favorite} />
+            <Route path={routes.favourite} component={Favorite} exact />
             <Route path={routes.predict} component={Predict} />
             <Route path={routes.login} component={Login} />
             <Route path={routes.register} component={Register} />
             <Route path={routes.search_result} component={SearchResult} />
             <Route
-              path={`${routes.favourite_detail}/:symbol`}
+              path={`${routes.favourite}/:symbol`}
               component={FavouriteDetail}
             />
           </Switch>
