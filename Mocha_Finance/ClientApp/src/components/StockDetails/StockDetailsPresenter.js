@@ -6,12 +6,14 @@ import AddStockModal from "./addStockModal";
 const StockDetailsPresenter = ({
   stock,
   auth,
+  match,
   myFavourites,
   handleChecked,
   handleAddStockOnFavourite
 }) => {
   const { symbol, companyName, stockInfos } = stock;
   const { isAuthenticated } = auth;
+  const { params } = match;
   return (
     <div className={style.detailsContainer}>
       <section className={style.companyName_symbol_addBtn}>
@@ -19,7 +21,7 @@ const StockDetailsPresenter = ({
           <h4>{companyName}</h4>
           <h6>{symbol}</h6>
         </div>
-        {isAuthenticated ? (
+        {isAuthenticated && params.hasOwnProperty("symbol") === false && (
           <div className={style.addBtn}>
             <button
               type="button"
@@ -29,8 +31,6 @@ const StockDetailsPresenter = ({
               Add To Favourite
             </button>
           </div>
-        ) : (
-          ""
         )}
       </section>
       <section className={style.graph_details}>
@@ -62,11 +62,15 @@ const StockDetailsPresenter = ({
           ))}
         </div>
       </section>
-      <AddStockModal
-        myFavourites={myFavourites}
-        handleChecked={handleChecked}
-        handleAddStockOnFavourite={handleAddStockOnFavourite}
-      />
+      {params.hasOwnProperty("symbol") ? (
+        ""
+      ) : (
+        <AddStockModal
+          myFavourites={myFavourites}
+          handleChecked={handleChecked}
+          handleAddStockOnFavourite={handleAddStockOnFavourite}
+        />
+      )}
     </div>
   );
 };
