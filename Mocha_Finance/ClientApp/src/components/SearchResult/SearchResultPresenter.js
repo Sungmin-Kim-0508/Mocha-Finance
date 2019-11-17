@@ -5,16 +5,26 @@ import StockDetails from "../StockDetails";
 
 const SearchResultPresenter = ({
   stock,
-  myFavourites,
+  myFavourite,
   handleChecked,
   handleAddStockOnFavourite
 }) => {
-  const { symbol, companyName, stockInfos, isSearch, isLoading } = stock;
-  console.log(myFavourites);
+  const {
+    symbol,
+    companyName,
+    stockInfos,
+    isSearched,
+    isLoading,
+    isNotFoundSymbol
+  } = stock;
+  const { myFavourites } = myFavourite;
   return (
     <section className={style.searchResultContainer}>
       {isLoading && stockInfos.length === 0 && <Spinner />}
-      {isLoading === false && isSearch === true && stockInfos.length > 0 && (
+      {isLoading === false && isNotFoundSymbol && (
+        <span>Not Found Company's Symbol</span>
+      )}
+      {isLoading === false && isSearched === true && stockInfos.length > 0 && (
         <StockDetails
           stock={stock}
           myFavourites={myFavourites}
@@ -25,9 +35,9 @@ const SearchResultPresenter = ({
           handleAddStockOnFavourite={handleAddStockOnFavourite}
         />
       )}
-      {isLoading === false && isSearch === true && stockInfos.length === 0 && (
-        <p>No Results</p>
-      )}
+      {isLoading === false &&
+        isSearched === true &&
+        stockInfos.length === 0 && <p>No Results</p>}
     </section>
   );
 };

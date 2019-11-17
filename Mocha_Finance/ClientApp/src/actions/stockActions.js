@@ -3,7 +3,8 @@ import {
   SEARCHED_STOCK,
   ADD_STOCK_ON_MY_FAVORITE,
   LOADING_MY_FAVOURITE_STOCK,
-  LOADED_MY_FAVOURITE_STOCK
+  LOADED_MY_FAVOURITE_STOCK,
+  NOT_FOUND_SYMBOL
 } from "./types";
 import { returnErrors } from "./errorActions";
 import { stockApi, serverCrudApi } from "../apis/stockApi";
@@ -21,7 +22,7 @@ export const searchStock = keyword => async dispatch => {
   }
 };
 
-export const searchTodayStock = keyword => async dispatch => {
+export const searchStockDetails = keyword => async dispatch => {
   dispatch({ type: LOADING_STOCK });
   try {
     const { data } = await stockApi.todayPrice(keyword);
@@ -29,6 +30,10 @@ export const searchTodayStock = keyword => async dispatch => {
       data: { symbolsList }
     } = await stockApi.getSymbolList();
     const myCompany = symbolsList.find(item => item.symbol === data.symbol);
+    if (myCompany === undefined) {
+      dispatch({ type: NOT_FOUND_SYMBOL });
+      return;
+    }
     dispatch({
       type: SEARCHED_STOCK,
       payload: {

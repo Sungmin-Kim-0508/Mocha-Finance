@@ -48,7 +48,7 @@ const FavouritePresenter = ({
               key={uuid4()}
               id={stock.symbol}
               className={style.myFavStocks__list}
-              to={`${routes.favourite_detail}/${stock.symbol}`}
+              to={`${routes.favourite}/${stock.symbol}`}
             >
               <div className={style.company_name_symbol}>
                 <span className={style.company_name}>{stock.name}</span>
