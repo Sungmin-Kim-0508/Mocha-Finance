@@ -3,12 +3,14 @@ import {
   SEARCHED_STOCK,
   ADD_STOCK_ON_MY_FAVORITE,
   LOADING_MY_FAVOURITE_STOCK,
-  LOADED_MY_FAVOURITE_STOCK
+  LOADED_MY_FAVOURITE_STOCK,
+  NOT_FOUND_SYMBOL
 } from "../actions/types";
 
 const initialState = {
   isLoading: false,
-  isSearch: false,
+  isSearched: false,
+  isNotFoundSymbol: false,
   stockInfos: [],
   myFavouriteStocks: [],
   symbol: "",
@@ -23,7 +25,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: true,
-        isSearch: false,
+        isSearched: false,
         myFavouriteStocks: [],
         stockInfos: [],
         msg: ""
@@ -35,7 +37,7 @@ export default function(state = initialState, action) {
         stockInfos: action.payload.stockInfos,
         symbol: action.payload.symbol,
         companyName: action.payload.companyName,
-        isSearch: true
+        isSearched: true
       };
     case ADD_STOCK_ON_MY_FAVORITE:
       return {
@@ -47,6 +49,14 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
         myFavouriteStocks: action.payload
+      };
+    case NOT_FOUND_SYMBOL:
+      return {
+        ...state,
+        isLoading: false,
+        isNotFoundSymbol: true,
+        stockInfos: [],
+        myFavouriteStocks: []
       };
     default:
       return state;
