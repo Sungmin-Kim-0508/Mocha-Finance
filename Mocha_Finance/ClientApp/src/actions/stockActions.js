@@ -22,7 +22,7 @@ export const searchStock = keyword => async dispatch => {
   }
 };
 
-export const searchTodayStock = keyword => async dispatch => {
+export const searchStockDetails = keyword => async dispatch => {
   dispatch({ type: LOADING_STOCK });
   try {
     const { data } = await stockApi.todayPrice(keyword);

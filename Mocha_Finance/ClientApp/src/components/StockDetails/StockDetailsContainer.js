@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import StockDetailsPresenter from "./StockDetailsPresenter";
 import { connect } from "react-redux";
+import { searchStockDetails } from "../../actions/stockActions";
 import { withRouter } from "react-router-dom";
 
 class StockDetailsContainer extends Component {
+  async componentDidMount() {
+    const {
+      match: { params }
+    } = this.props;
+    if (params.hasOwnProperty("symbol")) {
+      this.props.searchStockDetails(params.symbol);
+    }
+  }
   render() {
     const {
       match,
@@ -31,4 +40,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(StockDetailsContainer));
+export default withRouter(
+  connect(mapStateToProps, { searchStockDetails })(StockDetailsContainer)
+);

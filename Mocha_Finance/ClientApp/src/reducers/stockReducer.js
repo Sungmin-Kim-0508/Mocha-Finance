@@ -34,10 +34,10 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
+        isSearched: true,
         stockInfos: action.payload.stockInfos,
         symbol: action.payload.symbol,
-        companyName: action.payload.companyName,
-        isSearched: true
+        companyName: action.payload.companyName
       };
     case ADD_STOCK_ON_MY_FAVORITE:
       return {

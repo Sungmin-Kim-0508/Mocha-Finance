@@ -5,7 +5,7 @@ import StockDetails from "../StockDetails";
 
 const SearchResultPresenter = ({
   stock,
-  myFavourites,
+  myFavourite,
   handleChecked,
   handleAddStockOnFavourite
 }) => {
@@ -17,7 +17,7 @@ const SearchResultPresenter = ({
     isLoading,
     isNotFoundSymbol
   } = stock;
-  console.log(myFavourites);
+  const { myFavourites } = myFavourite;
   return (
     <section className={style.searchResultContainer}>
       {isLoading && stockInfos.length === 0 && <Spinner />}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SearchPresenter from "./SearchPresenter";
 import { stockApi } from "../../apis/stockApi";
 import { connect } from "react-redux";
-import { searchTodayStock } from "../../actions/stockActions";
+import { searchStockDetails } from "../../actions/stockActions";
 import { withRouter } from "react-router-dom";
 import routes from "../../routes";
 
@@ -32,7 +32,7 @@ class SearchContainer extends Component {
       history: { push }
     } = this.props;
     if (keyword.length !== 0) {
-      this.props.searchTodayStock(keyword);
+      this.props.searchStockDetails(keyword);
       push(routes.search_result);
     }
   };
@@ -62,5 +62,5 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { searchTodayStock })(SearchContainer)
+  connect(mapStateToProps, { searchStockDetails })(SearchContainer)
 );

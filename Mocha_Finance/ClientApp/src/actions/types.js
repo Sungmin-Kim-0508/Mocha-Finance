@@ -16,3 +16,7 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const LOGOUT = "LOGOUT";
 export const GET_ERRORS = "GET_ERRORS";
+
+// My Favourite Action Type
+export const LOADING_MY_FAVOURITE = "LOADING_MY_FAVOURITE";
+export const LOADED_MY_FAVOURITE = "LOADED_MY_FAVOURITE";

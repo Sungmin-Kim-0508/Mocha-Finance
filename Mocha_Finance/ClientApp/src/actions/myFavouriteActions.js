@@ -6,12 +6,10 @@ export const getAllFavourites = memberID => async dispatch => {
 
   const { data: allMyFav } = await myFavouriteApi.getAllFavourites(memberID);
   let myFavObj = allMyFav.map(item => {
-    if (item !== null) {
-      return {
-        myFavouriteName: item.myFavouriteName,
-        myFavouriteID: item.myFavouriteID
-      };
-    }
+    return {
+      myFavouriteName: item.myFavouriteName,
+      myFavouriteID: item.myFavouriteID
+    };
   });
 
   dispatch({ type: LOADED_MY_FAVOURITE, payload: myFavObj });

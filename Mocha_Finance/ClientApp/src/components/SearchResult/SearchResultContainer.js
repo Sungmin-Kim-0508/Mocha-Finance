@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchResultPresenter from "./SearchResultPresenter";
 import { connect } from "react-redux";
 import { addStockOnMyFavourite } from "../../actions/stockActions";
+import { getAllFavourites } from "../../actions/myFavouriteActions";
 import myFavouriteApi from "../../apis/myFavouriteApi";
 
 let favID = 0;
@@ -22,44 +23,23 @@ class SearchResultContainer extends Component {
   async componentDidMount() {
     const { user } = this.props.auth;
     if (user !== null || user !== undefined) {
-      const { data: allMyFav } = await myFavouriteApi.getAllFavourites(
-        user.memberID
-      );
-
-      let myFavObj = allMyFav.map(item => ({
-        myFavouriteName: item.myFavouriteName,
-        myFavouriteID: item.myFavouriteID
-      }));
-      this.setState({
-        myFavourites: myFavObj
-      });
+      this.props.getAllFavourites(user.memberID);
     }
   }
 
   async componentDidUpdate(prevProps) {
     if (prevProps.auth.user !== this.props.auth.user) {
       const { user } = this.props.auth;
-      const { data: allMyFav } = await myFavouriteApi.getAllFavourites(
-        user.memberID
-      );
-
-      let myFavObj = allMyFav.map(item => ({
-        myFavouriteName: item.myFavouriteName,
-        myFavouriteID: item.myFavouriteID
-      }));
-      this.setState({
-        myFavourites: myFavObj
-      });
+      this.props.getAllFavourites(user.memberID);
     }
   }
 
   render() {
-    const { myFavourites } = this.state;
-    const { stock } = this.props;
+    const { stock, myFavourite } = this.props;
     return (
       <SearchResultPresenter
         stock={stock}
-        myFavourites={myFavourites}
+        myFavourite={myFavourite}
         handleChecked={this.handleChecked}
         handleAddStockOnFavourite={this.handleAddStockOnFavourite}
       />
@@ -70,10 +50,12 @@ class SearchResultContainer extends Component {
 const mapStateToProps = state => {
   return {
     stock: state.stock,
-    auth: state.auth
+    auth: state.auth,
+    myFavourite: state.myFavourite
   };
 };
 
-export default connect(mapStateToProps, { addStockOnMyFavourite })(
-  SearchResultContainer
-);
+export default connect(mapStateToProps, {
+  addStockOnMyFavourite,
+  getAllFavourites
+})(SearchResultContainer);
