@@ -8,9 +8,7 @@ namespace Mocha_Finance.Model
 {
     public class URLStockModel
     {
-        [JsonProperty("symbol")]
         public string symbol { get; set; }
-        [JsonProperty("historical")]
         public List<HistoricalURL> historical { get; set; }
     }
 }
