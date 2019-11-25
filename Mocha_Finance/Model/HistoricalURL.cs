@@ -7,11 +7,12 @@ namespace Mocha_Finance.Model
 {
     public class HistoricalURL
     {
-        public DateTime date { get; set; }
+        public string date { get; set; }
         public double open { get; set; }
         public double high { get; set; }
         public double low { get; set; }
         public double close { get; set; }
+        public double volume { get; set; }
         public double unadjustedVolume { get; set; }
         public double change { get; set; }
         public double changePercent { get; set; }
