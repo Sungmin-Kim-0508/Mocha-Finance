@@ -14,12 +14,19 @@ namespace Mocha_Finance.Controllers
         ExpectedPriceDBContext eContext = new ExpectedPriceDBContext();
 
         [HttpGet("[action]")]
-        public string Test()
+        public List<double> getFuturePrices(string stockSymbol, int numberOfDataToUse, double futuredays)
         {
-            string s = eContext.InitialReadFromURL();
-            int sss = s.Length;
-            return s;
+            //string stockSymbol = "aapl";
+            //int numberOfDataToUse = 100;
+            //double futuredays = 5;
+            List<double> prices = eContext.findFuturePrices(stockSymbol, numberOfDataToUse, futuredays);
+            return prices;
+        }
 
+        [HttpGet("[action]")]
+        public List<double> getGraphData()
+        {
+            return eContext.getGraphData();
         }
 
     }
