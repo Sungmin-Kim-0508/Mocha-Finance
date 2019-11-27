@@ -11,6 +11,7 @@ class HeaderContainer extends Component {
 
   onLogOut = () => {
     this.props.logout();
+    window.location = "/";
   };
   render() {
     const { auth } = this.props;

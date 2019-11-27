@@ -23,7 +23,7 @@ const FavouritePresenter = ({
         </button>
       </section>
       <section className={style.fav}>
-        {myFavourites.length === 0 && <Spinner />}
+        {isLoading && myFavourites.length === 0 && <Spinner />}
         {myFavourites &&
           myFavourites.map(item => (
             <span

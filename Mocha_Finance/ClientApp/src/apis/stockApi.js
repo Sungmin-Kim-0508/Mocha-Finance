@@ -25,3 +25,14 @@ export const serverCrudApi = {
       `AddStockByFavIDAndStockSymbol?favid=${favid}&symbol=${symbol}`
     )
 };
+
+const expPriceApi = axios.create({
+  baseURL: `${routes.base_root_url}/api/ExpectedPrice/`
+});
+
+export const expectedPriceApi = {
+  getFuturePrices: (stockSymbol, numberOfDataToUse, futuredays) =>
+    expPriceApi.get(
+      `getFuturePrices?stockSymbol=${stockSymbol}&numberOfDataToUse=${numberOfDataToUse}&futuredays=${futuredays}`
+    )
+};
