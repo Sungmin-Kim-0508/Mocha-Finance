@@ -58,7 +58,7 @@ export const login = (email, password) => async (dispatch, getState) => {
     else {
       let data = {
         user: {
-          memeberID: userInfo.memberID,
+          memberID: userInfo.memberID,
           email: userInfo.email,
           myFavourites: userInfo.myFavourites
         },
@@ -93,7 +93,7 @@ export const register = (email, password1, password2) => async (
 
     let data = {
       user: {
-        memeberID: userInfo.memberID,
+        memberID: userInfo.memberID,
         email: userInfo.email,
         myFavourites: userInfo.myFavourites
       },
