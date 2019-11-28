@@ -1,8 +1,6 @@
 import React from "react";
 import News from "../News";
-import uuid4 from "uuid4";
 import style from "./home.module.scss";
-import AddStockModal from "./addStockModal";
 
 const HomePresenter = ({ stock }) => {
   const { isLoading } = stock;

@@ -3,9 +3,7 @@ import HomePresenter from "./HomePresenter";
 import myFavouriteApi from "../../apis/myFavouriteApi";
 import { connect } from "react-redux";
 import { searchStock } from "../../actions/stockActions";
-import { serverCrudApi } from "../../apis/stockApi";
 import { addStockOnMyFavourite } from "../../actions/stockActions";
-import routes from "../../routes";
 
 let favID = 0;
 class HomeContainer extends Component {

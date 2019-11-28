@@ -4,10 +4,11 @@ import {
   ADD_STOCK_ON_MY_FAVORITE,
   LOADING_MY_FAVOURITE_STOCK,
   LOADED_MY_FAVOURITE_STOCK,
-  NOT_FOUND_SYMBOL
+  NOT_FOUND_SYMBOL,
+  LOADING_MY_FAVOURITE
 } from "./types";
 import { returnErrors } from "./errorActions";
-import { stockApi, serverCrudApi, expectedPriceApi } from "../apis/stockApi";
+import { stockApi, serverCrudApi } from "../apis/stockApi";
 
 export const searchStock = keyword => async dispatch => {
   dispatch({ type: LOADING_STOCK });
@@ -48,10 +49,8 @@ export const searchStockDetails = keyword => async dispatch => {
 };
 
 export const addStockOnMyFavourite = (favID, symbol) => async dispatch => {
-  const isAdded = await serverCrudApi.addStockByFavIDAndStockSymbol(
-    favID,
-    symbol
-  );
+  dispatch({ type: LOADING_MY_FAVOURITE });
+  await serverCrudApi.addStockByFavIDAndStockSymbol(favID, symbol);
 
   dispatch({ type: ADD_STOCK_ON_MY_FAVORITE });
 };
@@ -83,17 +82,4 @@ export const getAllStockByMemberID = memID => async dispatch => {
   });
 
   dispatch({ type: LOADED_MY_FAVOURITE_STOCK, payload: myStockList });
-};
-
-export const getFuturePrices = (
-  stockSymbol,
-  numberOfDataToUse,
-  futuredays
-) => async dispatch => {
-  const { data } = await expectedPriceApi.getFuturePrices(
-    stockSymbol,
-    numberOfDataToUse,
-    futuredays
-  );
-  return data;
 };

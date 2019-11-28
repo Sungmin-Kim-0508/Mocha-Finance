@@ -9,7 +9,6 @@ import routes from "../../routes";
 const FavouritePresenter = ({
   stock,
   myFavourites,
-  handleClickList,
   handleAddFavourite,
   handleInput,
   handleGetAllStockByFavID

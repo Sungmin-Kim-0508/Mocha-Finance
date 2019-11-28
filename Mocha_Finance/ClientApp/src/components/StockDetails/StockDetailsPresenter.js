@@ -50,11 +50,11 @@ const StockDetailsPresenter = ({
                     <span>{item.date}</span>
                   </span>
                   <span className={style.category}>
-                    <span className={style.title}>high</span>
+                    <span className={style.title}>High</span>
                     <span>{item.high}</span>
                   </span>
                   <span className={style.category}>
-                    <span className={style.title}>low</span>
+                    <span className={style.title}>Low</span>
                     <span>{item.low}</span>
                   </span>
                   <span className={style.category}>

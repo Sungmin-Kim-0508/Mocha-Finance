@@ -18,13 +18,12 @@ const HeaderPresenter = ({ auth, onLogOut }) => {
         aria-haspopup="true"
         aria-expanded="false"
       >
-        MY USER NAME
+        {user.email}
       </a>
       <div
         className={`dropdown-menu ${style.dropdownMenu}`}
         aria-labelledby="navbarDropdown"
       >
-        <a className="dropdown-item">Profile</a>
         <NavLink to={routes.favourite} className="dropdown-item">
           My Favourite
         </NavLink>
@@ -45,13 +44,12 @@ const HeaderPresenter = ({ auth, onLogOut }) => {
         aria-haspopup="true"
         aria-expanded="false"
       >
-        MY USER NAME
+        {user.email}
       </a>
       <div
         className={`dropdown-menu ${style.dropdownMenu}`}
         aria-labelledby="navbarDropdown"
       >
-        <a className="dropdown-item">Profile</a>
         <NavLink to={routes.favourite} className="dropdown-item">
           My Favourite
         </NavLink>
@@ -99,16 +97,9 @@ const HeaderPresenter = ({ auth, onLogOut }) => {
           id="navbarForCollapsing"
         >
           <ul className="navbar-nav mr-auto">
-            {/* <AuthLinkMobile /> */}
-            <li className="nav-item">
-              <NavLink to={routes.predict} className="nav-link">
-                Predict Your Stock
-              </NavLink>
-            </li>
             {isAuthenticated === false && <GuestLink />}
             {isAuthenticated && user && <AuthLinkDesktop />}
             {isAuthenticated && user && <AuthLinkMobile />}
-            {/* <AuthLinkDesktop /> */}
           </ul>
         </section>
       </nav>
