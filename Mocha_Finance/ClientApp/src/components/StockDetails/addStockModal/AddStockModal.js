@@ -4,13 +4,11 @@ import uuid4 from "uuid4";
 
 class AddStockModal extends Component {
   render() {
-    console.log(this.props);
     const {
       myFavourites,
       handleAddStockOnFavourite,
       handleChecked
     } = this.props;
-    console.log(myFavourites);
     return (
       <section
         className="modal fade"

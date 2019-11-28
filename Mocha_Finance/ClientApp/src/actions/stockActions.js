@@ -71,7 +71,6 @@ export const getAllStockByFavId = favID => async dispatch => {
 };
 
 export const getAllStockByMemberID = memID => async dispatch => {
-  console.log(memID);
   dispatch({ type: LOADING_MY_FAVOURITE_STOCK });
   const { data: stockList } = await serverCrudApi.getAllStcokByMemID(memID);
   const {
@@ -83,8 +82,6 @@ export const getAllStockByMemberID = memID => async dispatch => {
     return mySymbol;
   });
 
-  console.log(stockList);
-
   dispatch({ type: LOADED_MY_FAVOURITE_STOCK, payload: myStockList });
 };
 
@@ -93,7 +90,6 @@ export const getFuturePrices = (
   numberOfDataToUse,
   futuredays
 ) => async dispatch => {
-  console.log(stockSymbol, numberOfDataToUse, futuredays);
   const { data } = await expectedPriceApi.getFuturePrices(
     stockSymbol,
     numberOfDataToUse,

@@ -3,6 +3,7 @@ import uuid4 from "uuid4";
 import style from "./stockDetail.module.scss";
 import AddStockModal from "./addStockModal";
 import Spinner from "../../utils/Spinner";
+import Chart from "../Chart";
 
 const StockDetailsPresenter = ({
   stock,
@@ -38,7 +39,9 @@ const StockDetailsPresenter = ({
             )}
           </section>
           <section className={style.graph_details}>
-            <div className={style.graph}>Graph Image</div>
+            <div>
+              <Chart symbol={symbol} />
+            </div>
             <div className={style.details}>
               {stockInfos.map(item => (
                 <p key={uuid4()}>
