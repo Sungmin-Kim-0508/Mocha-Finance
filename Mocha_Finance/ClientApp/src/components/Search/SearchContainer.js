@@ -101,21 +101,20 @@ class SearchContainer extends Component {
     const inputProps = {
       placeholder: "Search for news, symbols or companies",
       value,
+      className: style.input,
       onChange: this.handleSearch
     };
     return (
-
-      <Card style={{ marginTop: '20%' }}>
-        <CardContent>
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={inputProps} />
-        </CardContent>
-      </Card>
+      <>
+        <SearchPresenter
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+        />
+      </>
 
     );
   }
