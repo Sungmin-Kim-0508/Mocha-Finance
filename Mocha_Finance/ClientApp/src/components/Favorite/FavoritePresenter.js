@@ -5,11 +5,11 @@ import AddFavouriteModal from "./addFavouriteModal";
 import style from "./favourite.module.scss";
 import { NavLink } from "react-router-dom";
 import routes from "../../routes";
+import Predict from "../Predict";
 
 const FavouritePresenter = ({
   stock,
   myFavourites,
-  handleClickList,
   handleAddFavourite,
   handleInput,
   handleGetAllStockByFavID

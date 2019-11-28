@@ -26,12 +26,8 @@
   .graph_details {
     display: grid;
     grid-auto-flow: column;
-    grid-gap: 20px;
-    .graph {
-      height: 100%;
-      width: 100%;
-      background-color: chartreuse;
-    }
+    grid-gap: 15px;
+    grid-template-columns: 2fr 1fr;
 
     .details > p {
       display: grid;
@@ -52,6 +48,33 @@
 
       span:last-child {
         border-bottom: none;
+      }
+    }
+  }
+
+  .futureValueContainer {
+    form {
+      margin-bottom: 20px;
+      .insertValue {
+        font-size: 1.5rem;
+      }
+    }
+
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 100px;
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #12cbc4;
       }
     }
   }

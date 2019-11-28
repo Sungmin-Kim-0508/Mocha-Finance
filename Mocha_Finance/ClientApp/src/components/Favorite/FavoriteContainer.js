@@ -1,29 +1,16 @@
 import React, { Component } from "react";
 import FavouritePresenter from "./FavoritePresenter";
 import myFavouriteApi from "../../apis/myFavouriteApi";
-import authApi from "../../apis/authApi";
 import { connect } from "react-redux";
 import {
   getAllStockByFavId,
   getAllStockByMemberID
 } from "../../actions/stockActions";
-import routes from "../../routes";
 
 class FavouriteContainer extends Component {
   state = {
     myFavouriteName: "",
     myFavourites: []
-  };
-
-  handleClickList = e => {
-    e.preventDefault();
-    let myTarget = e.target;
-    // myTarget = myTarget.documentElement;
-    console.log(myTarget);
-    // const {
-    //   history: { push }
-    // } = this.props;
-    // push(routes.favourite_detail);
   };
 
   handleGetAllStockByFavID = e => {
@@ -61,7 +48,6 @@ class FavouriteContainer extends Component {
       const { data: allMyFav } = await myFavouriteApi.getAllFavourites(
         user.memberID
       );
-      console.log(allMyFav);
 
       let myFavObj = allMyFav.map(item => ({
         myFavouriteName: item.myFavouriteName,
@@ -101,7 +87,6 @@ class FavouriteContainer extends Component {
       <FavouritePresenter
         stock={stock}
         myFavourites={myFavourites}
-        handleClickList={this.handleClickList}
         handleAddFavourite={this.handleAddFavourite}
         handleInput={this.handleInput}
         handleGetAllStockByFavID={this.handleGetAllStockByFavID}

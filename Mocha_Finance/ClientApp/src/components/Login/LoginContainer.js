@@ -30,7 +30,6 @@ class LoginContainer extends Component {
   }
 
   render() {
-    const { email, password } = this.state;
     const { msg } = this.props.auth;
     return (
       <LoginPresenter
@@ -48,7 +47,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { login }
-)(LoginContainer);
+export default connect(mapStateToProps, { login })(LoginContainer);

@@ -3,6 +3,8 @@ import uuid4 from "uuid4";
 import style from "./stockDetail.module.scss";
 import AddStockModal from "./addStockModal";
 import Spinner from "../../utils/Spinner";
+import Chart from "../Chart";
+import Predict from "../Predict";
 
 const StockDetailsPresenter = ({
   stock,
@@ -38,7 +40,9 @@ const StockDetailsPresenter = ({
             )}
           </section>
           <section className={style.graph_details}>
-            <div className={style.graph}>Graph Image</div>
+            <div>
+              <Chart symbol={symbol} />
+            </div>
             <div className={style.details}>
               {stockInfos.map(item => (
                 <p key={uuid4()}>
@@ -47,11 +51,11 @@ const StockDetailsPresenter = ({
                     <span>{item.date}</span>
                   </span>
                   <span className={style.category}>
-                    <span className={style.title}>high</span>
+                    <span className={style.title}>High</span>
                     <span>{item.high}</span>
                   </span>
                   <span className={style.category}>
-                    <span className={style.title}>low</span>
+                    <span className={style.title}>Low</span>
                     <span>{item.low}</span>
                   </span>
                   <span className={style.category}>
@@ -65,6 +69,9 @@ const StockDetailsPresenter = ({
                 </p>
               ))}
             </div>
+          </section>
+          <section className={style.futureValueContainer}>
+            <Predict />
           </section>
         </>
       )}

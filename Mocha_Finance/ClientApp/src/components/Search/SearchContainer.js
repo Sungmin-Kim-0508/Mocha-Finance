@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SearchPresenter from "./SearchPresenter";
-import { stockApi } from "../../apis/stockApi";
 import { connect } from "react-redux";
 import { searchStockDetails } from "../../actions/stockActions";
 import { withRouter } from "react-router-dom";
@@ -13,11 +12,6 @@ class SearchContainer extends Component {
     historical: [],
     isSearch: false
   };
-
-  async componentDidMount() {
-    // const { data } = await stockApi.historicalPrice("AAPL");
-    // console.log(data);
-  }
 
   handleSearch = e => {
     this.setState({
@@ -37,15 +31,7 @@ class SearchContainer extends Component {
     }
   };
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.stock.stockInfos !== this.props.stock.stockInfos) {
-      const { stockInfos } = this.props.stock;
-    }
-  }
-
   render() {
-    const { todayHistorical } = this.state;
-
     return (
       <SearchPresenter
         handleSearch={this.handleSearch}
