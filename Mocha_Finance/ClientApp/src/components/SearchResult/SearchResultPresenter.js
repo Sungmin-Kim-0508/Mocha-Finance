@@ -43,11 +43,6 @@ const SearchResultPresenter = ({
           isSearched === true &&
           stockInfos.length === 0 && <p>No Results</p>}
       </section>
-      <section className={style.futureValueContainer}>
-        {isLoading === false &&
-          isSearched === true &&
-          stockInfos.length > 0 && <Predict />}
-      </section>
     </>
   );
 };

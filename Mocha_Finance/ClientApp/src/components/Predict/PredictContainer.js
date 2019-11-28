@@ -56,7 +56,6 @@ class PredictContainer extends Component {
 
   render() {
     const { futurePrices, isFuturePricesLoading } = this.state;
-    console.log(msg);
     return (
       <PredictPresenter
         futurePrices={futurePrices}

@@ -44,7 +44,11 @@ const PredictPresenter = ({
         </div>
       </form>
       {msg.length > 0 && { msg }}
-      {isFuturePricesLoading && <Spinner />}
+      {isFuturePricesLoading && (
+        <div>
+          <Spinner />
+        </div>
+      )}
       {futurePrices.length > 0 && isFuturePricesLoading === false && (
         <table>
           <tbody>

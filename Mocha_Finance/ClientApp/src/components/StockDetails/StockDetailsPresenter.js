@@ -4,6 +4,7 @@ import style from "./stockDetail.module.scss";
 import AddStockModal from "./addStockModal";
 import Spinner from "../../utils/Spinner";
 import Chart from "../Chart";
+import Predict from "../Predict";
 
 const StockDetailsPresenter = ({
   stock,
@@ -68,6 +69,9 @@ const StockDetailsPresenter = ({
                 </p>
               ))}
             </div>
+          </section>
+          <section className={style.futureValueContainer}>
+            <Predict />
           </section>
         </>
       )}
